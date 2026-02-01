@@ -18,11 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 app.include_router(
     auth_router,
-    prefix="/auth",
-    tags=["Auth"],
-    dependencies=[],
+    prefix="/api/v1",
     )
 
