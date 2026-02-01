@@ -101,7 +101,7 @@ export const Navbar = () => {
   return (
     <>
       <header className={`w-full sticky top-0 z-50 transition-all duration-500 ${isScrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
-        
+
         {/* ══════════════════ PROMO TICKER (Primary bg - Jamuni) ══════════════════ */}
         <div className="bg-primary text-primary-foreground overflow-hidden">
           <div className="max-w-7xl mx-auto">
@@ -124,7 +124,7 @@ export const Navbar = () => {
         <div className={`bg-background transition-all duration-300 ${isScrolled ? "border-b border-default-200" : ""}`}>
           <div className="max-w-7xl mx-auto px-4 lg:px-6">
             <div className="flex items-center justify-between h-16 lg:h-[72px] gap-4">
-              
+
               {/* ──── Logo ──── */}
               <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
                 <div className="relative w-10 h-10 lg:w-11 lg:h-11">
@@ -163,7 +163,7 @@ export const Navbar = () => {
 
               {/* ──── Right Actions ──── */}
               <div className="flex items-center gap-1 sm:gap-2">
-                
+
                 {/* Mobile Search Toggle */}
                 <Button
                   isIconOnly
@@ -259,7 +259,7 @@ export const Navbar = () => {
         <nav className="hidden lg:block bg-default-50/80 backdrop-blur-sm border-t border-b border-default-100">
           <div className="max-w-7xl mx-auto px-4 lg:px-6">
             <div className="flex items-center h-12 gap-1">
-              
+
               {/* Categories Dropdown - Primary button */}
               <Dropdown>
                 <DropdownTrigger>
@@ -389,7 +389,7 @@ export const Navbar = () => {
 
           {/* Drawer Content */}
           <div className="overflow-y-auto h-[calc(100%-140px)] p-4">
-            
+
             {/* User Quick Actions */}
             <div className="grid grid-cols-3 gap-2 mb-6">
               <Link href="/account" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors">

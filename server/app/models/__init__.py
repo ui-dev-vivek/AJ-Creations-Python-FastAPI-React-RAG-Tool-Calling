@@ -1,10 +1,39 @@
-from .auth_model import Users, Profiles, Addresses
-from .products_model import Categories, Products, ProductImages, Inventories
-from .cart_model import Cart, CartItem
-from .orders_model import Order, OrderItem
+from .auth_model import User, Profile, Address, Role, LoginAuditLog, PasswordReset, Session,role_permissions, user_roles, Permission,UserOTP
+from .products_model import Categories,ProductCategories,Products,ProductVariants,ProductVariantAttributes,Brand,Attributes,AttributeValues,Inventories,ProductVideos,ProductImages
+# Alias for backwards compatibility
+Users = User
 
-__all__ = ["Users", "Profiles", "Addresses",
-           "Categories", "Products", "ProductImages", "Inventories",
-           "Cart", "CartItem",
-           "Order", "OrderItem"]
+__all__ = [
+    # Users
+    "User",
+    "Users",
+    "Profile",
+    "Address",
+    "Role",
+    "LoginAuditLog",
+    "PasswordReset",
+    "Session",
+    "role_permissions",
+    "user_roles",
+    "Permission",
+    "UserOTP",
+    # Products
+    "Categories",
+    "ProductCategories",
+    "Products",
+    "ProductVariants",
+    "ProductVariantAttributes",
+    "Brand",
+    "Attributes",
+    "AttributeValues",
+    "Inventories",
+    "ProductVideos",
+    "ProductImages",
+    
+    
+    
+    
+]
+
+
 

@@ -7,6 +7,22 @@ from datetime import datetime
 from app.core.database import Base
 
 
+# Association tables - Define these before the model classes
+user_roles = Table(
+    "user_roles",
+    Base.metadata,
+    Column("user_id", ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
+    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
+)
+
+role_permissions = Table(
+    "role_permissions",
+    Base.metadata,
+    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
+    Column("permission_id", ForeignKey("permissions.id", ondelete="CASCADE"), primary_key=True),
+)
+
+
 class User(Base):
     __tablename__ = "users"
 
@@ -40,7 +56,18 @@ class User(Base):
         back_populates="user",
         cascade="all, delete-orphan"
     )
+    otp: Mapped["UserOTP"] = relationship(back_populates="user")
 
+class UserOTP(Base):
+    __tablename__ = "user_otps"
+
+    id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    otp_code: Mapped[str] = mapped_column(String(10), nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
+    used_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    user: Mapped["User"] = relationship(back_populates="otp")
 
 class Role(Base):
     __tablename__ = "roles"
@@ -78,28 +105,13 @@ class Permission(Base):
     )
 
 
-user_roles = Table(
-    "user_roles",
-    Base.metadata,
-    Column("user_id", ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
-    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
-)
-
-role_permissions = Table(
-    "role_permissions",
-    Base.metadata,
-    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
-    Column("permission_id", ForeignKey("permissions.id", ondelete="CASCADE"), primary_key=True),
-)
-
-
 class Session(Base):
-    __table__="sessions"
+    __tablename__="sessions"
 
     id: Mapped[int] = mapped_column(primary_key=True,unique=True,index=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False,index=True)
-    refresh_token: Mapped[str] = mapped_column(String,nullable=True)
-    user_agent: Mapped[str] = mapped_column(String,nullable=True)
+    refresh_token: Mapped[str] = mapped_column(String(500),nullable=True)
+    user_agent: Mapped[str] = mapped_column(String(500),nullable=True)
     expires_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
 
@@ -108,7 +120,7 @@ class PasswordReset(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
-    reset_token: Mapped[str] = mapped_column(String, unique=True, nullable=False)
+    reset_token: Mapped[str] = mapped_column(String(500), unique=True, nullable=False)
     expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     used_at: Mapped[datetime] = mapped_column(DateTime, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
@@ -120,12 +132,12 @@ class LoginAuditLog(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
-    email: Mapped[str] = mapped_column(String, nullable=True)
-    mobile: Mapped[str] = mapped_column(String, nullable=True)
-    ip_address: Mapped[str] = mapped_column(String, nullable=True)
-    user_agent: Mapped[str] = mapped_column(String, nullable=True)
-    status: Mapped[str] = mapped_column(String, nullable=False)
-    failure_reason: Mapped[str] = mapped_column(String, nullable=True)
+    email: Mapped[str] = mapped_column(String(255), nullable=True)
+    mobile: Mapped[str] = mapped_column(String(10), nullable=True)
+    ip_address: Mapped[str] = mapped_column(String(45), nullable=True)
+    user_agent: Mapped[str] = mapped_column(String(500), nullable=True)
+    status: Mapped[str] = mapped_column(String(50), nullable=False)
+    failure_reason: Mapped[str] = mapped_column(String(255), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
@@ -168,6 +180,9 @@ class Address(Base):
     pincode: Mapped[str] = mapped_column(String(20))
 
     created_at: Mapped[datetime] = mapped_column(default=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        default=datetime.utcnow, onupdate=datetime.utcnow
+    )
 
     user: Mapped["User"] = relationship(back_populates="addresses")
 
