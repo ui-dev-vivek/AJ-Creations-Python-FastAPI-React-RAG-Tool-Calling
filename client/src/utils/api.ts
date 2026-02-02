@@ -230,6 +230,4 @@ const api = {
 };
 
 export default api;
-
-// Export axios instance for advanced use cases
-export { axiosInstance };
+export { api };
