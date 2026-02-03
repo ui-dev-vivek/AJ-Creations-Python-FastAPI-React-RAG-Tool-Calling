@@ -4,10 +4,12 @@
  * MAVA Navbar Component
  * ═══════════════════════════════════════════════════════════════════════════════
  * Theme Colors (Single Source of Truth):
- * - Primary (Jamuni): #5B2C83 → Headers, Nav, Primary buttons, Active states, Focus rings
- * - Secondary (Aam): #FFC72C → CTA buttons, Prices, Discounts, Highlights, Badges
- * - Text on Jamuni: #FFFFFF
- * - Text on Aam: #2B2B2B
+ * - Primary (Dark Blue): #00296b → Headers, Nav, Primary buttons, Active states
+ * - Primary Medium: #003f88 → Hover states, Focus rings
+ * - Primary Light: #00509d → Secondary hover states
+ * - Secondary (Yellow): #ffd500, #fdc500 → CTA buttons, Prices, Badges
+ * - Text on Primary: #FFFFFF
+ * - Text on Secondary: #00296b
  * - Neutrals: default-* tokens for backgrounds, borders, secondary text
  * ═══════════════════════════════════════════════════════════════════════════════
  */
@@ -37,19 +39,12 @@ import {
   BiCog,
   BiUserPlus,
   BiX,
-  BiLeaf,
-  BiSprayCan,
-  BiStar,
-  BiHome,
 } from "react-icons/bi";
 import {
   MdLocalOffer,
   MdLocalShipping,
   MdNewReleases,
 } from "react-icons/md";
-import { FaRegGem } from "react-icons/fa";
-import { HiOutlineSparkles, HiSparkles } from "react-icons/hi";
-import { RiPlantLine, RiHome4Line } from "react-icons/ri";
 import { IoFlashOutline } from "react-icons/io5";
 
 import { siteConfig, categories, promotions } from "../config/site";
@@ -83,21 +78,6 @@ export const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isMenuOpen]);
 
-  // Category icons - using primary color for consistency
-  const getCategoryIcon = (id: string) => {
-    const icons: Record<string, JSX.Element> = {
-      skincare: <HiOutlineSparkles className="text-lg text-primary" />,
-      makeup: <FaRegGem className="text-lg text-primary" />,
-      haircare: <BiSprayCan className="text-lg text-primary" />,
-      fragrance: <RiPlantLine className="text-lg text-primary" />,
-      "home-decor": <RiHome4Line className="text-lg text-primary" />,
-      lighting: <BiStar className="text-lg text-primary" />,
-      furnishing: <BiHome className="text-lg text-primary" />,
-      bath: <BiLeaf className="text-lg text-primary" />,
-    };
-    return icons[id] || <HiSparkles className="text-lg text-primary" />;
-  };
-
   return (
     <>
       <header className={`w-full sticky top-0 z-50 transition-all duration-500 ${isScrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
@@ -112,7 +92,7 @@ export const Navbar = () => {
                 <span className="hidden sm:inline">—</span>
                 <span className="font-bold hidden sm:inline">{promotions[currentPromo].subtitle}</span>
                 {/* Promo code badge - Secondary highlight */}
-                <code className="ml-2 bg-secondary text-[#2B2B2B] px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold tracking-wider">
+                <code className="ml-2 bg-secondary text-[#00296b] px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold tracking-wider">
                   {promotions[currentPromo].code}
                 </code>
               </div>
@@ -210,7 +190,7 @@ export const Navbar = () => {
                   </DropdownMenu>
                 </Dropdown>
 
-                {/* Wishlist - Badge uses Secondary (Aam) for highlight */}
+                {/* Wishlist - Badge uses Secondary for highlight */}
                 <Button
                   as={Link}
                   href="/wishlist"
@@ -219,7 +199,7 @@ export const Navbar = () => {
                   className="hidden sm:flex w-10 h-10 rounded-xl relative"
                 >
                   <BiHeart className="text-xl text-default-600 hover:text-primary transition-colors" />
-                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-[#2B2B2B] text-[10px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
                     3
                   </span>
                 </Button>
@@ -233,7 +213,7 @@ export const Navbar = () => {
                 >
                   <div className="relative">
                     <BiShoppingBag className="text-xl text-primary" />
-                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[#2B2B2B] text-[10px] font-bold rounded-full flex items-center justify-center">
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
                       2
                     </span>
                   </div>
@@ -322,7 +302,7 @@ export const Navbar = () => {
               <div className="ml-auto flex items-center gap-4">
                 {/* Premium - Secondary for CTA highlight */}
                 <Link href="/premium" className="flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline">
-                  <FaRegGem className="text-xs" />
+                  ✨
                   Premium
                 </Link>
                 <Link href="/track-order" className="flex items-center gap-1.5 text-sm text-default-500 hover:text-primary">
@@ -400,7 +380,7 @@ export const Navbar = () => {
               <Link href="/wishlist" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors relative">
                 <BiHeart className="text-2xl text-primary" />
                 <span className="text-xs font-medium">Wishlist</span>
-                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#2B2B2B] text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
               </Link>
               <Link href="/orders" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors">
                 <BiBox className="text-2xl text-secondary" />
@@ -416,7 +396,7 @@ export const Navbar = () => {
                   <p className="text-lg font-bold">{promotions[currentPromo].subtitle}</p>
                 </div>
                 {/* Promo code - Secondary highlight */}
-                <code className="bg-secondary text-[#2B2B2B] px-3 py-1.5 rounded-lg text-sm font-bold">
+                <code className="bg-secondary text-[#00296b] px-3 py-1.5 rounded-lg text-sm font-bold">
                   {promotions[currentPromo].code}
                 </code>
               </div>

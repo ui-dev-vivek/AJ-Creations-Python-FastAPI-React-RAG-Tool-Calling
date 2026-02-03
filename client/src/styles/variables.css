@@ -1,0 +1,200 @@
+/**
+ * MAVA CSS Variables
+ * Central place for all CSS custom properties
+ * Can be used in any CSS file or component styles
+ * 
+ * Usage:
+ * .element {
+ *   color: var(--color-primary-dark);
+ *   background: var(--color-secondary-light);
+ * }
+ */
+
+:root {
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     PRIMARY COLORS (Dark Blue)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-primary-50: #f0f4f9;
+  --color-primary-100: #dae3f0;
+  --color-primary-200: #c3d2e7;
+  --color-primary-300: #adc1de;
+  --color-primary-400: #96b0d5;
+  --color-primary-dark: #00296b;
+  --color-primary-medium: #003f88;
+  --color-primary-light: #00509d;
+  --color-primary-800: #002050;
+  --color-primary-900: #001535;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     SECONDARY COLORS (Yellow/Gold)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-secondary-50: #fffbf0;
+  --color-secondary-100: #fff5dd;
+  --color-secondary-200: #ffefc9;
+  --color-secondary-300: #ffe9b5;
+  --color-secondary-400: #ffe3a1;
+  --color-secondary-light: #ffd500;
+  --color-secondary-dark: #fdc500;
+  --color-secondary-gold: #e6b200;
+  --color-secondary-800: #cc9e00;
+  --color-secondary-900: #b38a00;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     TEXT COLORS
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-text-dark: #1a1a1a;
+  --color-text-light: #666666;
+  --color-text-white: #ffffff;
+  --color-text-on-primary: #ffffff;
+  --color-text-on-secondary: #00296b;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     BACKGROUND COLORS
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-bg-light: #ffffff;
+  --color-bg-gray: #f5f5f5;
+  --color-bg-dark: #2b2b2b;
+  --color-bg-lightgray: #f9fafb;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     SEMANTIC COLORS (Status)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-success: #0bd462;
+  --color-warning: #eff612;
+  --color-danger: #f31260;
+  --color-info: #00509d;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     BORDERS & DIVIDERS
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --color-border-default: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-border-dark: #cccccc;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     SHADOW COLORS (with opacity)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --shadow-primary: 0 4px 12px rgba(0, 41, 107, 0.3);
+  --shadow-secondary: 0 4px 12px rgba(255, 213, 0, 0.3);
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-dark: 0 8px 24px rgba(0, 0, 0, 0.2);
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     OPACITY VALUES
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --opacity-disabled: 0.6;
+  --opacity-hover: 0.8;
+  --opacity-active: 1;
+  --opacity-background: 0.1;
+  --opacity-border: 0.2;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     SPACING (for margins and padding consistency)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     TRANSITIONS & ANIMATIONS
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-cubic-in: cubic-bezier(0.4, 0, 1, 1);
+  --transition-cubic-out: cubic-bezier(0, 0, 0.2, 1);
+  --transition-cubic-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  --font-family-mono: 'Monaco', 'Courier New', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     Z-INDEX SCALE
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --z-index-dropdown: 100;
+  --z-index-modal-backdrop: 1000;
+  --z-index-modal: 1001;
+  --z-index-popover: 1020;
+  --z-index-tooltip: 1030;
+  --z-index-notification: 1040;
+
+  /* ═══════════════════════════════════════════════════════════════════════════════
+     BREAKPOINTS (for responsive design)
+     ═══════════════════════════════════════════════════════════════════════════════ */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════════
+   DARK MODE OVERRIDES
+   ═══════════════════════════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-text-dark: #f5f5f5;
+    --color-text-light: #b0b0b0;
+    --color-bg-light: #1a1a1a;
+    --color-bg-gray: #2b2b2b;
+    --color-bg-lightgray: #252525;
+    --color-border-default: #404040;
+    --color-border-light: #333333;
+  }
+}
+
+.dark {
+  --color-text-dark: #f5f5f5;
+  --color-text-light: #b0b0b0;
+  --color-bg-light: #1a1a1a;
+  --color-bg-gray: #2b2b2b;
+  --color-bg-lightgray: #252525;
+  --color-border-default: #404040;
+  --color-border-light: #333333;
+}
