@@ -1,6 +1,6 @@
 
 from sqlalchemy import (
-    String, Boolean, DateTime, ForeignKey, Table, Column
+    BigInteger, String, Boolean, DateTime, ForeignKey, Table, Column
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from datetime import datetime
@@ -11,22 +11,22 @@ from app.core.database import Base
 user_roles = Table(
     "user_roles",
     Base.metadata,
-    Column("user_id", ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
-    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
+    Column("user_id", BigInteger, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True),
+    Column("role_id", BigInteger, ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
 )
 
 role_permissions = Table(
     "role_permissions",
     Base.metadata,
-    Column("role_id", ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
-    Column("permission_id", ForeignKey("permissions.id", ondelete="CASCADE"), primary_key=True),
+    Column("role_id", BigInteger, ForeignKey("roles.id", ondelete="CASCADE"), primary_key=True),
+    Column("permission_id", BigInteger, ForeignKey("permissions.id", ondelete="CASCADE"), primary_key=True),
 )
 
 
 class User(Base):
     __tablename__ = "users"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     mobile: Mapped[str] = mapped_column(String(10), unique=True, index=True)
     email: Mapped[str | None] = mapped_column(String(255), unique=True)
     username: Mapped[str | None] = mapped_column(String(255), unique=True)
@@ -61,8 +61,8 @@ class User(Base):
 class UserOTP(Base):
     __tablename__ = "user_otps"
 
-    id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True, unique=True, index=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
     otp_code: Mapped[str] = mapped_column(String(10), nullable=False)
     expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     used_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
@@ -72,7 +72,7 @@ class UserOTP(Base):
 class Role(Base):
     __tablename__ = "roles"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     description: Mapped[str | None] = mapped_column(String(255))
 
@@ -92,7 +92,7 @@ class Role(Base):
 class Permission(Base):
     __tablename__ = "permissions"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     key: Mapped[str] = mapped_column(String(100), unique=True)
     name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     description: Mapped[str | None] = mapped_column(String(255))
@@ -108,7 +108,7 @@ class Permission(Base):
 class Session(Base):
     __tablename__="sessions"
 
-    id: Mapped[int] = mapped_column(primary_key=True,unique=True,index=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True, unique=True, index=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False,index=True)
     refresh_token: Mapped[str] = mapped_column(String(500),nullable=True)
     user_agent: Mapped[str] = mapped_column(String(500),nullable=True)
@@ -118,8 +118,8 @@ class Session(Base):
 class PasswordReset(Base):
     __tablename__ = "password_resets"
 
-    id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True, unique=True, index=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
     reset_token: Mapped[str] = mapped_column(String(500), unique=True, nullable=False)
     expires_at: Mapped[datetime] = mapped_column(DateTime, nullable=False)
     used_at: Mapped[datetime] = mapped_column(DateTime, nullable=True)
@@ -130,8 +130,8 @@ class PasswordReset(Base):
 class LoginAuditLog(Base):
     __tablename__ = "login_audit_logs"
 
-    id: Mapped[int] = mapped_column(primary_key=True, unique=True, index=True)
-    user_id: Mapped[int] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True, unique=True, index=True)
+    user_id: Mapped[int] = mapped_column(BigInteger, ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
     email: Mapped[str] = mapped_column(String(255), nullable=True)
     mobile: Mapped[str] = mapped_column(String(10), nullable=True)
     ip_address: Mapped[str] = mapped_column(String(45), nullable=True)
@@ -146,9 +146,9 @@ class LoginAuditLog(Base):
 class Profile(Base):
     __tablename__ = "profiles"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id", ondelete="CASCADE"),
+        BigInteger, ForeignKey("users.id", ondelete="CASCADE"),
         unique=True
     )
 
@@ -167,9 +167,9 @@ class Profile(Base):
 class Address(Base):
     __tablename__ = "addresses"
 
-    id: Mapped[int] = mapped_column(primary_key=True)
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=True)
     user_id: Mapped[int] = mapped_column(
-        ForeignKey("users.id", ondelete="CASCADE")
+        BigInteger, ForeignKey("users.id", ondelete="CASCADE")
     )
 
     type: Mapped[str] = mapped_column(String(10))  # home, office
