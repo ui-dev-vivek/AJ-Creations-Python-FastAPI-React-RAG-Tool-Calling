@@ -1,9 +1,10 @@
-// import { authRoutes } from "./auth.routes";
-// import { dashboardRoutes } from "./dashboard.routes";
-// import { adminRoutes } from "./admin.routes";
+import { authRoutes } from "./authRoutes.tsx";
+import { webRoutes } from "./web.tsx";
 
-export const appRoutes = [
-//   ...authRoutes,
-//   ...dashboardRoutes,
-//   ...adminRoutes,
+
+const appRoutes = [
+  ...webRoutes,
+  ...authRoutes,
 ];
+
+export default appRoutes;
