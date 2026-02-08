@@ -1,4 +1,4 @@
-@import "variables.css";
+@import "./variables.css";
 @import "tailwindcss";
 @plugin '../hero.ts';
 
@@ -22,6 +22,11 @@
 /* ═══════════════════════════════════════════════════════════════════════════════
    HEADING TAGS (h1 - h6)
    ═══════════════════════════════════════════════════════════════════════════════ */
+
+
+body{
+  background-color: #fdeaee;
+}
 
 h1,
 h2,
