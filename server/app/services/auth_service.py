@@ -4,12 +4,27 @@ from sqlalchemy.orm import Session
 from app.models.auth_model import User, UserOTP, PasswordReset
 import datetime
 from typing import Optional
+from passlib.context import CryptContext
+from app.utils.jwt_handler import JWTHandler
+
+# Password hashing context
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class AuthenticateService:
   OTP_EXPIRY_TIME=10
   
   def __init__(self,db:Session):
     self.db=db
+  
+  @staticmethod
+  def hash_password(password: str) -> str:
+    """Hash password using bcrypt."""
+    return pwd_context.hash(password)
+  
+  @staticmethod
+  def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify plain password against hashed password."""
+    return pwd_context.verify(plain_password, hashed_password)
   def authenticate(self,mobile:str):
     """Generate OTP for authentication. Register user if not exists."""
     try:
@@ -38,7 +53,7 @@ class AuthenticateService:
     new_user=User(
       email="email@"+mobile+"com",
       username="user_"+mobile,
-      password_hash="haspassword",
+      password_hash=self.hash_password("default_password_change_me"),
       mobile=mobile,
       is_active=True,
       is_verified=False 
@@ -48,8 +63,8 @@ class AuthenticateService:
     self.db.refresh(new_user)
     otp=self.generate_otp(new_user)
     return otp
-  def verify_otp(self,mobile:str,otp_code:str)->Optional[str]:
-    """Verify OTP and generate access token for login."""
+  def verify_otp(self,mobile:str,otp_code:str)->Optional[tuple]:
+    """Verify OTP and generate JWT access and refresh tokens for login."""
     try:
       user = (
               self.db.query(User)
@@ -80,14 +95,21 @@ class AuthenticateService:
       user_otp.used_at = datetime.datetime.now()
       self.db.commit()
       
-      # Generate and return access token (simplified JWT)
-      access_token = f"token_{user.id}_{mobile}_{datetime.datetime.now().timestamp()}"
-      return access_token
+      # Generate JWT tokens
+      token_data = {
+          "user_id": user.id,
+          "mobile": user.mobile,
+          "email": user.email
+      }
+      access_token = JWTHandler.create_access_token(token_data)
+      refresh_token = JWTHandler.create_refresh_token(token_data)
+      
+      return (access_token, refresh_token, user.is_verified)
     except Exception as e:
       return None
 
-  def login_with_email(self, email: str, password: str) -> Optional[str]:
-    """Login with email and password. Return access token."""
+  def login_with_email(self, email: str, password: str) -> Optional[tuple]:
+    """Login with email and password. Return JWT access and refresh tokens."""
     try:
       user = (
               self.db.query(User)
@@ -97,13 +119,20 @@ class AuthenticateService:
       if not user:
         return None
       
-      # Simple password check (in production, use proper hashing like bcrypt)
-      if user.password_hash != password:
+      # Verify password using bcrypt
+      if not self.verify_password(password, user.password_hash):
         return None
       
-      # Generate and return access token
-      access_token = f"token_{user.id}_{email}_{datetime.datetime.now().timestamp()}"
-      return access_token
+      # Generate JWT tokens
+      token_data = {
+          "user_id": user.id,
+          "email": user.email,
+          "mobile": user.mobile
+      }
+      access_token = JWTHandler.create_access_token(token_data)
+      refresh_token = JWTHandler.create_refresh_token(token_data)
+      
+      return (access_token, refresh_token)
     except Exception as e:
       return None
 
@@ -160,6 +189,31 @@ class AuthenticateService:
       return True
     except Exception as e:
       return False
+  
+  def refresh_access_token(self, refresh_token: str) -> Optional[str]:
+    """Generate new access token from valid refresh token."""
+    try:
+      payload = JWTHandler.verify_token(refresh_token)
+      
+      if not payload or payload.get("type") != "refresh":
+        return None
+      
+      user_id = payload.get("user_id")
+      user = self.db.query(User).filter(User.id == user_id, User.is_active == True).first()
+      
+      if not user:
+        return None
+      
+      # Generate new access token
+      token_data = {
+          "user_id": user.id,
+          "email": user.email,
+          "mobile": user.mobile
+      }
+      new_access_token = JWTHandler.create_access_token(token_data)
+      return new_access_token
+    except Exception as e:
+      return None
     
 
 

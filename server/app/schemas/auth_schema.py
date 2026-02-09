@@ -21,13 +21,21 @@ class LoginRequest(BaseModel):
 
 class AuthenticateRequest(BaseModel):
     mobile: str = Field(..., max_length=15, min_length=10)
-    otp_code: Optional[str] = Field(default=None, max_length=6, min_length=6)
+    otp: Optional[str] = Field(default=None, max_length=6, min_length=6)
 
 class OtpResponse(BaseModel):
-    otp: int = Field(..., ge=100000, le=999999)
+    otp_status: str ='otp_sent'
+    message: Optional[str] = "OTP sent to registered mobile"
+
 class LoginResponse(BaseModel):
-    access_token: str
+    access_token: str = Field(..., description="JWT access token (expires in 30 minutes)")
+    refresh_token: Optional[str] = Field(None, description="JWT refresh token (expires in 7 days)")
+    first_time: Optional[bool] = False
     token_type: str = "bearer"
+    user_id: Optional[int] = None
+    email: Optional[str] = None
+    mobile: Optional[str] = None
+    
     class Config:
         from_attributes = True
 
@@ -49,3 +57,11 @@ class ResetPasswordRequest(BaseModel):
 class ResetPasswordResponse(BaseModel):
     message: str
     detail: str
+
+class RefreshTokenRequest(BaseModel):
+    refresh_token: str = Field(..., description="JWT refresh token")
+
+class TokenResponse(BaseModel):
+    access_token: str = Field(..., description="New JWT access token")
+    token_type: str = "bearer"
+    expires_in: int = Field(default=1800, description="Token expiration time in seconds (30 minutes)")
