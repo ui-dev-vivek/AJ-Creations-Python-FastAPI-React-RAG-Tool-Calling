@@ -1,3 +1,7 @@
+import re
+import stat
+
+
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.core.database import get_db
@@ -19,18 +23,18 @@ router = APIRouter(
 def authenticate_user(auth:AuthenticateRequest,db:Session=Depends(get_db)):
     """Generate OTP for mobile. Register if user doesn't exist."""
     # If otp_code is provided, verify it instead
-    if auth.otp_code:
+    if auth.otp:
         auth_service=AuthenticateService(db)
-        access_token = auth_service.verify_otp(auth.mobile, auth.otp_code)
-        
+        access_token = auth_service.verify_otp(auth.mobile, auth.otp)
+
         if not access_token:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid or expired OTP."
             )
-        
-        return LoginResponse(access_token=access_token, token_type="bearer")
-    
+
+        return LoginResponse(access_token=access_token,refresh_token="", token_type="bearer",first_login=False)
+
     # Otherwise, generate OTP
     auth_service=AuthenticateService(db)
     otp=auth_service.authenticate(auth.mobile)
@@ -39,7 +43,8 @@ def authenticate_user(auth:AuthenticateRequest,db:Session=Depends(get_db)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to generate OTP."
         )
-    return OtpResponse(otp=otp)
+    print(otp)
+    return OtpResponse(status="otp_sent")
 
 
 
@@ -51,13 +56,13 @@ def login(login_request: EmailLoginRequest, db: Session = Depends(get_db)):
     try:
         auth_service = AuthenticateService(db)
         access_token = auth_service.login_with_email(login_request.email, login_request.password)
-        
+
         if not access_token:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Invalid email or password."
             )
-        
+
         return LoginResponse(access_token=access_token, token_type="bearer")
     except Exception as e:
         raise HTTPException(
@@ -72,13 +77,13 @@ def forgot_password(request: ForgotPasswordRequest, db: Session = Depends(get_db
     try:
         auth_service = AuthenticateService(db)
         reset_token = auth_service.forgot_password(request.email)
-        
+
         if not reset_token:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
                 detail="Email not found."
             )
-        
+
         # In production, send email with reset link containing reset_token
         return ForgotPasswordResponse(
             message="Password reset link sent",
@@ -99,13 +104,13 @@ def reset_password(request: ResetPasswordRequest, db: Session = Depends(get_db))
     try:
         auth_service = AuthenticateService(db)
         success = auth_service.reset_password(request.reset_token, request.new_password)
-        
+
         if not success:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="Invalid or expired reset token."
             )
-        
+
         return ResetPasswordResponse(
             message="Password reset successful",
             detail="Your password has been updated successfully."

@@ -1,59 +1,98 @@
+import { useState, useEffect, useRef } from "react";
 import { Input } from "@heroui/input";
-
+import { InputOtp } from "@heroui/input-otp";
 const Login: React.FC = () => {
-    return (
-        <div className="min-h-screen bg-[##fdebf0] ">
-            {/* 3 Equal Parts Layout - Responsive */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 min-h-screen">
+  const [inputs, setInputs] = useState({});
+  const [showOtp, setShowOtp] = useState(false);
+  const handleInputs = (e) => {
+    setInputs((prevInputs) => ({
+      ...prevInputs,
+      [e.target.name]: e.target.value,
+    }));
+    console.log(inputs);
+  };
 
-                {/* Left Section */}
-                <div className="">
+  return (
+    <div className="min-h-screen bg-[##fdebf0] ">
+      {/* 3 Equal Parts Layout - Responsive */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 min-h-screen">
+        {/* Left Section */}
+        <div className=""></div>
+        {/* main Section */}
+        <div className="">
+          <section className="flex flex-col justify-center items-center rounded-lg bg-white shadow-md ">
+            {/* <img
+              src="/images/login-banner.png"
+              alt=""
+              className="rounded-t-xl"
+            /> */}
+            <div className="py-8 px-5 w-100 justify-center">
+              <h5 className="text-sm font-bold text-center">
+                Sign Up to view your profile
+              </h5>
 
+              {showOtp ? (
+                <div className="flex flex-col items-start gap-2 justify-center items-center">
+                  <InputOtp
+                    length={6}
+                    name="otp"
+                    value={inputs.otp || ""}
+                    onChange={handleInputs}
+                    size="md"
+                  />
+                  {inputs.otp ? (
+                    <div className="text-small text-default-500 flex justify-center items-center">
+                      Check Your OTP:
+                      <span className="text-md font-medium">{inputs.otp}</span>
+                    </div>
+                  ) : (
+                    <div className="text-small text-default-500 flex justify-center items-center"></div>
+                  )}
                 </div>
-                {/* main Section */}
-                <div className="">
-                    <section className="flex flex-col justify-center items-center rounded-lg bg-white shadow-md">
-                        <img src="/images/login-banner.png" alt="" className="rounded-t-xl" />
-                        <div className="py-8 px-1">
-                            <h3 className="text-2xl font-bold">Sign Up to view your profile</h3>
-                            <div className="flex flex-col gap-4 mt-6">
-                                <Input
-                                    className="w-full"
-                                    label="Phone Number"
-                                    labelPlacement="outside"
-                                    placeholder="Enter your phone number"
-                                    type="text"
-                                />
-
-                            </div>
-                            <button className="mt-6  w-full bg-primary text-white rounded-md py-4 text-xl hover:bg-primary-dark transition">
-                                Continue
-                            </button>
-                        </div>
-                       <div className="px-6 md:px-8 py-5 bg-gradient-to-r from-default-50 to-default-100 border-t border-default-200">
-                            <p className="text-xs md:text-xs text-center text-default-600 leading-relaxed">
-                                By continuing, you agree to MAVA's&nbsp;
-                                <a className="underline text-primary font-semibold hover:text-primary/80 transition" href="#">
-                                    Terms & Conditions
-                                </a>
-                                &nbsp;and&nbsp;
-                                <a className="underline text-primary font-semibold hover:text-primary/80 transition" href="#">
-                                    Privacy Policy
-                                </a>
-                            </p>
-                        </div>
-                    </section>
+              ) : (
+                <div className="flex flex-col gap-4 mt-6">
+                  <Input
+                    className="w-full"
+                    label="Phone Number"
+                    labelPlacement="outside"
+                    name="phone"
+                    value={inputs.phone || ""}
+                    onChange={handleInputs}
+                    placeholder="Enter your phone number"
+                    type="text"
+                  />
                 </div>
-                {/* Right Section */}
-                <div className="">
+              )}
 
-                </div>
-
-
-
+              <button className="mt-6  w-full bg-primary text-white rounded-md py-4 text-xl hover:bg-primary-dark transition">
+                Continue
+              </button>
             </div>
+            <div className="px-6 md:px-8 py-5 bg-gradient-to-r from-default-50 to-default-100 border-t border-default-200">
+              <p className="text-xs md:text-xs text-center text-default-600 leading-relaxed">
+                By continuing, you agree to MAVA's&nbsp;
+                <a
+                  className="underline text-primary font-semibold hover:text-primary/80 transition"
+                  href="#"
+                >
+                  Terms & Conditions
+                </a>
+                &nbsp;and&nbsp;
+                <a
+                  className="underline text-primary font-semibold hover:text-primary/80 transition"
+                  href="#"
+                >
+                  Privacy Policy
+                </a>
+              </p>
+            </div>
+          </section>
         </div>
-    );
-}
+        {/* Right Section */}
+        <div className=""></div>
+      </div>
+    </div>
+  );
+};
 
 export default Login;

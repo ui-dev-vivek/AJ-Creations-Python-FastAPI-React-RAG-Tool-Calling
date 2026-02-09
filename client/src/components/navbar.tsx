@@ -40,11 +40,7 @@ import {
   BiUserPlus,
   BiX,
 } from "react-icons/bi";
-import {
-  MdLocalOffer,
-  MdLocalShipping,
-  MdNewReleases,
-} from "react-icons/md";
+import { MdLocalOffer, MdLocalShipping, MdNewReleases } from "react-icons/md";
 import { IoFlashOutline } from "react-icons/io5";
 
 import { siteConfig, categories, promotions } from "../config/site";
@@ -75,22 +71,29 @@ export const Navbar = () => {
   // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isMenuOpen]);
 
   return (
     <>
-      <header className={`w-full sticky top-0 z-50 transition-all duration-500 ${isScrolled ? "shadow-2xl shadow-primary/10" : ""}`}>
-
+      <header
+        className={`w-full sticky top-0 z-50 transition-all duration-500 ${isScrolled ? "shadow-2xl shadow-primary/10" : ""}`}
+      >
         {/* ══════════════════ PROMO TICKER (Primary bg - Jamuni) ══════════════════ */}
         <div className="bg-primary text-primary-foreground overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center h-9 px-4 text-xs sm:text-sm">
               <div className="flex items-center gap-3 animate-fade-in">
                 <IoFlashOutline className="text-secondary text-lg animate-pulse" />
-                <span className="font-medium">{promotions[currentPromo].title}</span>
+                <span className="font-medium">
+                  {promotions[currentPromo].title}
+                </span>
                 <span className="hidden sm:inline">—</span>
-                <span className="font-bold hidden sm:inline">{promotions[currentPromo].subtitle}</span>
+                <span className="font-bold hidden sm:inline">
+                  {promotions[currentPromo].subtitle}
+                </span>
                 {/* Promo code badge - Secondary highlight */}
                 <code className="ml-2 bg-secondary text-[#00296b] px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold tracking-wider">
                   {promotions[currentPromo].code}
@@ -101,23 +104,13 @@ export const Navbar = () => {
         </div>
 
         {/* ══════════════════ MAIN NAVBAR ══════════════════ */}
-        <div className={`bg-background transition-all duration-300 ${isScrolled ? "border-b border-default-200" : ""}`}>
+        <div
+          className={`bg-background transition-all duration-300 ${isScrolled ? "border-b border-default-200" : ""}`}
+        >
           <div className="max-w-7xl mx-auto px-4 lg:px-6">
             <div className="flex items-center justify-between h-16 lg:h-[72px] gap-4">
-
               {/* ──── Logo ──── */}
-              <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-                <div className="relative w-10 h-10 lg:w-11 lg:h-11">
-                  <div className="absolute inset-0 bg-primary rounded-2xl opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <MavaLogo size={24} />
-                  </div>
-                </div>
-                <div className="hidden md:block">
-                  <h1 className="text-xl font-bold tracking-tight text-primary">MAVA</h1>
-                  <p className="text-[10px] text-default-400 -mt-0.5 tracking-widest">BEAUTY • HOME</p>
-                </div>
-              </Link>
+              <MavaLogo size={100} />
 
               {/* ──── Desktop Search ──── */}
               <div className="hidden lg:flex flex-1 max-w-xl mx-8">
@@ -125,7 +118,8 @@ export const Navbar = () => {
                   <Input
                     placeholder="What are you looking for?"
                     classNames={{
-                      inputWrapper: "bg-default-100 hover:bg-default-200/70 border-0 h-11 rounded-2xl pl-4 pr-2 transition-all duration-200 group-focus-within:ring-2 group-focus-within:ring-primary/30",
+                      inputWrapper:
+                        "bg-default-100 hover:bg-default-200/70 border-0 h-11 rounded-2xl pl-4 pr-2 transition-all duration-200 group-focus-within:ring-2 group-focus-within:ring-primary/30",
                       input: "text-sm",
                     }}
                     endContent={
@@ -143,7 +137,6 @@ export const Navbar = () => {
 
               {/* ──── Right Actions ──── */}
               <div className="flex items-center gap-1 sm:gap-2">
-
                 {/* Mobile Search Toggle */}
                 <Button
                   isIconOnly
@@ -169,23 +162,46 @@ export const Navbar = () => {
                       <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
                         <BiUser className="text-primary text-lg" />
                       </div>
-                      <span className="hidden lg:block text-sm font-medium">Account</span>
+                      <span className="hidden lg:block text-sm font-medium">
+                        Account
+                      </span>
                       <BiChevronDown className="text-default-400 text-sm hidden lg:block" />
                     </Button>
                   </DropdownTrigger>
                   <DropdownMenu className="w-52">
                     <DropdownSection showDivider>
-                      <DropdownItem key="signin" startContent={<BiLogIn className="text-primary" />}>
+                      <DropdownItem
+                        key="signin"
+                        startContent={<BiLogIn className="text-primary" />}
+                      >
                         Sign In
                       </DropdownItem>
-                      <DropdownItem key="signup" startContent={<BiUserPlus className="text-secondary" />}>
+                      <DropdownItem
+                        key="signup"
+                        startContent={<BiUserPlus className="text-secondary" />}
+                      >
                         Create Account
                       </DropdownItem>
                     </DropdownSection>
                     <DropdownSection>
-                      <DropdownItem key="orders" startContent={<BiBox className="text-default-500" />}>My Orders</DropdownItem>
-                      <DropdownItem key="wishlist" startContent={<BiHeart className="text-primary" />}>Wishlist</DropdownItem>
-                      <DropdownItem key="settings" startContent={<BiCog className="text-default-500" />}>Settings</DropdownItem>
+                      <DropdownItem
+                        key="orders"
+                        startContent={<BiBox className="text-default-500" />}
+                      >
+                        My Orders
+                      </DropdownItem>
+                      <DropdownItem
+                        key="wishlist"
+                        startContent={<BiHeart className="text-primary" />}
+                      >
+                        Wishlist
+                      </DropdownItem>
+                      <DropdownItem
+                        key="settings"
+                        startContent={<BiCog className="text-default-500" />}
+                      >
+                        Settings
+                      </DropdownItem>
                     </DropdownSection>
                   </DropdownMenu>
                 </Dropdown>
@@ -218,7 +234,9 @@ export const Navbar = () => {
                     </span>
                   </div>
                   {/* Price display - Secondary color for highlights */}
-                  <span className="hidden sm:block text-sm font-semibold text-secondary">₹2,499</span>
+                  <span className="hidden sm:block text-sm font-semibold text-secondary">
+                    ₹2,499
+                  </span>
                 </Button>
 
                 {/* Mobile Menu Toggle */}
@@ -239,7 +257,6 @@ export const Navbar = () => {
         <nav className="hidden lg:block bg-default-50/80 backdrop-blur-sm border-t border-b border-default-100">
           <div className="max-w-7xl mx-auto px-4 lg:px-6">
             <div className="flex items-center h-12 gap-1">
-
               {/* Categories Dropdown - Primary button */}
               <Dropdown>
                 <DropdownTrigger>
@@ -259,8 +276,13 @@ export const Navbar = () => {
                       <DropdownItem
                         key={cat.id}
                         href={`/category/${cat.id}`}
-                        startContent={<span className="text-xl">{cat.icon}</span>}
-                        description={cat.subcategories.slice(0, 3).map(s => s.name).join(", ")}
+                        startContent={
+                          <span className="text-xl">{cat.icon}</span>
+                        }
+                        description={cat.subcategories
+                          .slice(0, 3)
+                          .map((s) => s.name)
+                          .join(", ")}
                       >
                         {cat.name}
                       </DropdownItem>
@@ -271,8 +293,13 @@ export const Navbar = () => {
                       <DropdownItem
                         key={cat.id}
                         href={`/category/${cat.id}`}
-                        startContent={<span className="text-xl">{cat.icon}</span>}
-                        description={cat.subcategories.slice(0, 3).map(s => s.name).join(", ")}
+                        startContent={
+                          <span className="text-xl">{cat.icon}</span>
+                        }
+                        description={cat.subcategories
+                          .slice(0, 3)
+                          .map((s) => s.name)
+                          .join(", ")}
                       >
                         {cat.name}
                       </DropdownItem>
@@ -291,9 +318,13 @@ export const Navbar = () => {
                   className="h-9 px-4 rounded-xl text-sm font-medium text-default-600 hover:text-primary hover:bg-primary/10 transition-all flex items-center gap-1.5"
                 >
                   {/* New Arrivals - Secondary highlight */}
-                  {item.label === "New Arrivals" && <MdNewReleases className="text-secondary" />}
+                  {item.label === "New Arrivals" && (
+                    <MdNewReleases className="text-secondary" />
+                  )}
                   {/* Offers - Secondary highlight */}
-                  {item.label === "Offers" && <MdLocalOffer className="text-secondary" />}
+                  {item.label === "Offers" && (
+                    <MdLocalOffer className="text-secondary" />
+                  )}
                   {item.label}
                 </Link>
               ))}
@@ -301,15 +332,23 @@ export const Navbar = () => {
               {/* Right Side Quick Links */}
               <div className="ml-auto flex items-center gap-4">
                 {/* Premium - Secondary for CTA highlight */}
-                <Link href="/premium" className="flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline">
-                  ✨
-                  Premium
+                <Link
+                  href="/premium"
+                  className="flex items-center gap-1.5 text-sm font-medium text-secondary hover:underline"
+                >
+                  ✨ Premium
                 </Link>
-                <Link href="/track-order" className="flex items-center gap-1.5 text-sm text-default-500 hover:text-primary">
+                <Link
+                  href="/track-order"
+                  className="flex items-center gap-1.5 text-sm text-default-500 hover:text-primary"
+                >
                   <MdLocalShipping />
                   Track Order
                 </Link>
-                <Link href="tel:+911234567890" className="flex items-center gap-1.5 text-sm text-default-500 hover:text-primary">
+                <Link
+                  href="tel:+911234567890"
+                  className="flex items-center gap-1.5 text-sm text-default-500 hover:text-primary"
+                >
                   <BiPhone />
                   Support
                 </Link>
@@ -319,16 +358,24 @@ export const Navbar = () => {
         </nav>
 
         {/* ══════════════════ MOBILE SEARCH DROPDOWN ══════════════════ */}
-        <div className={`lg:hidden bg-background border-b border-default-200 overflow-hidden transition-all duration-300 ${isSearchOpen ? "max-h-20 py-3" : "max-h-0 py-0"}`}>
+        <div
+          className={`lg:hidden bg-background border-b border-default-200 overflow-hidden transition-all duration-300 ${isSearchOpen ? "max-h-20 py-3" : "max-h-0 py-0"}`}
+        >
           <div className="px-4">
             <Input
               placeholder="Search products..."
               classNames={{
-                inputWrapper: "bg-default-100 border-0 h-11 rounded-xl focus-within:ring-2 focus-within:ring-primary/30",
+                inputWrapper:
+                  "bg-default-100 border-0 h-11 rounded-xl focus-within:ring-2 focus-within:ring-primary/30",
               }}
               startContent={<BiSearch className="text-lg text-default-400" />}
               endContent={
-                <Button isIconOnly size="sm" variant="light" onPress={() => setIsSearchOpen(false)}>
+                <Button
+                  isIconOnly
+                  size="sm"
+                  variant="light"
+                  onPress={() => setIsSearchOpen(false)}
+                >
                   <BiX className="text-lg" />
                 </Button>
               }
@@ -362,27 +409,42 @@ export const Navbar = () => {
                 <p className="text-[10px] text-default-400">BEAUTY • HOME</p>
               </div>
             </div>
-            <Button isIconOnly variant="light" className="rounded-xl" onPress={() => setIsMenuOpen(false)}>
+            <Button
+              isIconOnly
+              variant="light"
+              className="rounded-xl"
+              onPress={() => setIsMenuOpen(false)}
+            >
               <BiX className="text-2xl" />
             </Button>
           </div>
 
           {/* Drawer Content */}
           <div className="overflow-y-auto h-[calc(100%-140px)] p-4">
-
             {/* User Quick Actions */}
             <div className="grid grid-cols-3 gap-2 mb-6">
-              <Link href="/account" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors">
+              <Link
+                href="/account"
+                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors"
+              >
                 <BiUser className="text-2xl text-primary" />
                 <span className="text-xs font-medium">Account</span>
               </Link>
               {/* Wishlist - Secondary badge for highlight */}
-              <Link href="/wishlist" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors relative">
+              <Link
+                href="/wishlist"
+                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors relative"
+              >
                 <BiHeart className="text-2xl text-primary" />
                 <span className="text-xs font-medium">Wishlist</span>
-                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
+                  3
+                </span>
               </Link>
-              <Link href="/orders" className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors">
+              <Link
+                href="/orders"
+                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors"
+              >
                 <BiBox className="text-2xl text-secondary" />
                 <span className="text-xs font-medium">Orders</span>
               </Link>
@@ -392,8 +454,12 @@ export const Navbar = () => {
             <div className="bg-primary p-4 rounded-2xl mb-6 text-primary-foreground">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-medium opacity-90">{promotions[currentPromo].title}</p>
-                  <p className="text-lg font-bold">{promotions[currentPromo].subtitle}</p>
+                  <p className="text-sm font-medium opacity-90">
+                    {promotions[currentPromo].title}
+                  </p>
+                  <p className="text-lg font-bold">
+                    {promotions[currentPromo].subtitle}
+                  </p>
                 </div>
                 {/* Promo code - Secondary highlight */}
                 <code className="bg-secondary text-[#00296b] px-3 py-1.5 rounded-lg text-sm font-bold">
@@ -404,7 +470,9 @@ export const Navbar = () => {
 
             {/* Categories */}
             <div className="mb-6">
-              <p className="text-xs font-semibold text-default-400 uppercase tracking-wider mb-3 px-1">Shop by Category</p>
+              <p className="text-xs font-semibold text-default-400 uppercase tracking-wider mb-3 px-1">
+                Shop by Category
+              </p>
               <div className="grid grid-cols-4 gap-2">
                 {categories.map((cat) => (
                   <Link
@@ -414,7 +482,9 @@ export const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <span className="text-2xl">{cat.icon}</span>
-                    <span className="text-[10px] text-center font-medium leading-tight">{cat.name}</span>
+                    <span className="text-[10px] text-center font-medium leading-tight">
+                      {cat.name}
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -422,7 +492,9 @@ export const Navbar = () => {
 
             {/* Navigation Links */}
             <div className="space-y-1">
-              <p className="text-xs font-semibold text-default-400 uppercase tracking-wider mb-3 px-1">Quick Links</p>
+              <p className="text-xs font-semibold text-default-400 uppercase tracking-wider mb-3 px-1">
+                Quick Links
+              </p>
               {siteConfig.navMenuItems.map((item) => (
                 <Link
                   key={item.href}
