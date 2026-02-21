@@ -11,18 +11,19 @@
  * ═══════════════════════════════════════════════════════════════════════════════ */
 
 :root {
+  --primary: #3b1e54;
+  --secondary: #ffc107;
   --jamuni-50: #f5f2f7;
-  --jamuni-100: #e6dfee;
-  --jamuni-500: #6d4c91;
-  --jamuni-800: #3d2a52;
-  --jamuni-950: #1d1428;
-  --aam-500: #ffb300;
-  --aam-700: #ff8f00;
+  --jamuni-500: #3b1e54;
+  --jamuni-800: #1a0d26;
+  --jamuni-950: #08040d;
+  --aam-500: #ffc107;
+  --aam-700: #f57c00;
 }
 
 body {
   @apply bg-background text-foreground selection:bg-primary-100 selection:text-primary-900 antialiased;
-  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
   letter-spacing: -0.01em;
 }
 
@@ -82,7 +83,6 @@ p {
 
 /* Animated Ambient Glows */
 @keyframes ambient-pulse {
-
   0%,
   100% {
     transform: translate(0, 0) scale(1);
@@ -105,13 +105,9 @@ p {
   animation: ambient-pulse 15s ease-in-out infinite;
 }
 
-/* Layered Glassmorphism (Vibe Check) */
+/* Layered Glassmorphism (Elite Atmosphere) */
 .glass-ultra {
-  @apply bg-white/5 backdrop-blur-[40px] backdrop-saturate-[180%] border border-white/10;
-}
-
-.dark .glass-ultra {
-  @apply bg-black/20 backdrop-blur-[40px] backdrop-saturate-[180%] border border-white/5;
+  @apply bg-white/60 dark:bg-[#08040d]/60 backdrop-blur-[32px] backdrop-saturate-[200%] border-b border-white/20 dark:border-white/5;
 }
 
 /* Physically Accurate Layered Shadows */
@@ -123,8 +119,8 @@ p {
 
 .shadow-glow-primary {
   box-shadow:
-    0 0 40px -10px theme('colors.primary.DEFAULT' / 40%),
-    0 0 80px -20px theme('colors.primary.DEFAULT' / 20%);
+    0 0 40px -10px theme("colors.primary.DEFAULT" / 40%),
+    0 0 80px -20px theme("colors.primary.DEFAULT" / 20%);
 }
 
 /* Editorial Reveal Masks */
@@ -167,7 +163,7 @@ p {
 }
 
 .link-hover::after {
-  content: '';
+  content: "";
   @apply absolute bottom-0 left-0 w-full h-0.5 bg-secondary scale-x-0 origin-right transition-transform duration-500;
 }
 
@@ -177,7 +173,6 @@ p {
 
 /* ══════════════════ TADKA BHADKA ANIMATIONS ══════════════════ */
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0);

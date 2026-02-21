@@ -3,7 +3,7 @@ import * as React from "react";
 import { IconSvgProps } from "@/types";
 
 export const MavaLogo: React.FC<IconSvgProps> = ({
-  size = 36,
+  size = 40,
   height,
   width,
   ...props

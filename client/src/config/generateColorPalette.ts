@@ -2,43 +2,47 @@
 /**
  * MAVA Color Palette Generator
  * Generates HTML preview of the color system for visual reference
- * 
+ *
  * Usage: npx ts-node src/config/generateColorPalette.ts
  */
 
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "fs";
+import * as path from "path";
 
 const colorPalette = {
   primary: {
-    dark: '#00296b',
-    medium: '#003f88',
-    light: '#00509d',
+    dark: "#00296b",
+    medium: "#003f88",
+    light: "#00509d",
   },
   secondary: {
-    dark: '#fdc500',
-    light: '#ffd500',
-    gold: '#e6b200',
+    dark: "#fdc500",
+    light: "#ffd500",
+    gold: "#e6b200",
   },
   text: {
-    dark: '#1a1a1a',
-    light: '#666666',
-    white: '#ffffff',
+    dark: "#1a1a1a",
+    light: "#666666",
+    white: "#ffffff",
   },
   background: {
-    light: '#ffffff',
-    gray: '#f5f5f5',
-    dark: '#2b2b2b',
+    light: "#ffffff",
+    gray: "#f5f5f5",
+    dark: "#2b2b2b",
   },
   semantic: {
-    success: '#0bd462',
-    warning: '#eff612',
-    danger: '#f31260',
-    info: '#00509d',
+    success: "#0bd462",
+    warning: "#eff612",
+    danger: "#f31260",
+    info: "#00509d",
   },
 };
 
-function generateColorCard(name: string, hex: string, description: string = ''): string {
+function generateColorCard(
+  name: string,
+  hex: string,
+  description: string = "",
+): string {
   const rgb = hexToRgb(hex);
   return `
     <div class="color-card">
@@ -47,7 +51,7 @@ function generateColorCard(name: string, hex: string, description: string = ''):
         <h4>${name}</h4>
         <p class="hex">${hex}</p>
         <p class="rgb">RGB(${rgb?.r}, ${rgb?.g}, ${rgb?.b})</p>
-        ${description ? `<p class="description">${description}</p>` : ''}
+        ${description ? `<p class="description">${description}</p>` : ""}
       </div>
     </div>
   `;
@@ -78,12 +82,7 @@ const html = `
       box-sizing: border-box;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      background: #f9fafb;
-      color: #1a1a1a;
-      padding: 40px 20px;
-    }
+
 
     .container {
       max-width: 1200px;
@@ -287,9 +286,9 @@ const html = `
       <h2 class="section-title">Primary Colors</h2>
       <p class="section-description">Used for headers, navigation, primary actions, and brand identity</p>
       <div class="color-grid">
-        ${generateColorCard('Primary Dark', '#00296b', 'Main primary color for headers and nav')}
-        ${generateColorCard('Primary Medium', '#003f88', 'Hover states and interactive elements')}
-        ${generateColorCard('Primary Light', '#00509d', 'Active and pressed states')}
+        ${generateColorCard("Primary Dark", "#00296b", "Main primary color for headers and nav")}
+        ${generateColorCard("Primary Medium", "#003f88", "Hover states and interactive elements")}
+        ${generateColorCard("Primary Light", "#00509d", "Active and pressed states")}
       </div>
     </div>
 
@@ -298,9 +297,9 @@ const html = `
       <h2 class="section-title">Secondary Colors</h2>
       <p class="section-description">Used for CTAs, highlights, badges, and promotional content</p>
       <div class="color-grid">
-        ${generateColorCard('Secondary Light', '#ffd500', 'Main secondary color for highlights')}
-        ${generateColorCard('Secondary Dark', '#fdc500', 'Secondary hover state')}
-        ${generateColorCard('Gold', '#e6b200', 'Secondary active state')}
+        ${generateColorCard("Secondary Light", "#ffd500", "Main secondary color for highlights")}
+        ${generateColorCard("Secondary Dark", "#fdc500", "Secondary hover state")}
+        ${generateColorCard("Gold", "#e6b200", "Secondary active state")}
       </div>
     </div>
 
@@ -309,9 +308,9 @@ const html = `
       <h2 class="section-title">Text Colors</h2>
       <p class="section-description">For typography and text elements</p>
       <div class="color-grid">
-        ${generateColorCard('Text Dark', '#1a1a1a', 'Body text and main content')}
-        ${generateColorCard('Text Light', '#666666', 'Secondary text and metadata')}
-        ${generateColorCard('Text White', '#ffffff', 'Text on dark backgrounds')}
+        ${generateColorCard("Text Dark", "#1a1a1a", "Body text and main content")}
+        ${generateColorCard("Text Light", "#666666", "Secondary text and metadata")}
+        ${generateColorCard("Text White", "#ffffff", "Text on dark backgrounds")}
       </div>
     </div>
 
@@ -320,9 +319,9 @@ const html = `
       <h2 class="section-title">Background Colors</h2>
       <p class="section-description">For page and component backgrounds</p>
       <div class="color-grid">
-        ${generateColorCard('Background Light', '#ffffff', 'Main page background')}
-        ${generateColorCard('Background Gray', '#f5f5f5', 'Secondary sections')}
-        ${generateColorCard('Background Dark', '#2b2b2b', 'Dark mode backgrounds')}
+        ${generateColorCard("Background Light", "#ffffff", "Main page background")}
+        ${generateColorCard("Background Gray", "#f5f5f5", "Secondary sections")}
+        ${generateColorCard("Background Dark", "#2b2b2b", "Dark mode backgrounds")}
       </div>
     </div>
 
@@ -331,10 +330,10 @@ const html = `
       <h2 class="section-title">Semantic Colors</h2>
       <p class="section-description">For status and semantic meanings</p>
       <div class="color-grid">
-        ${generateColorCard('Success', '#0bd462', 'Success states and confirmations')}
-        ${generateColorCard('Warning', '#eff612', 'Warning and caution messages')}
-        ${generateColorCard('Danger', '#f31260', 'Error and dangerous actions')}
-        ${generateColorCard('Info', '#00509d', 'Information and tips')}
+        ${generateColorCard("Success", "#0bd462", "Success states and confirmations")}
+        ${generateColorCard("Warning", "#eff612", "Warning and caution messages")}
+        ${generateColorCard("Danger", "#f31260", "Error and dangerous actions")}
+        ${generateColorCard("Info", "#00509d", "Information and tips")}
       </div>
     </div>
 
@@ -353,7 +352,7 @@ const html = `
     <div class="section">
       <h2 class="section-title">Typography Examples</h2>
       <p class="section-description">How colors are applied to text</p>
-      
+
       <div class="text-sample">
         <h5>Primary Text</h5>
         <p class="text-primary">This text uses the primary color (#00296b) for emphasis and headers.</p>
@@ -384,7 +383,7 @@ const html = `
 </html>
 `;
 
-const outputPath = path.join(__dirname, '../../COLOR_PALETTE.html');
-fs.writeFileSync(outputPath, html, 'utf-8');
-console.log('✅ Color palette HTML generated at: COLOR_PALETTE.html');
-console.log('Open the file in your browser to view the complete color system!');
+const outputPath = path.join(__dirname, "../../COLOR_PALETTE.html");
+fs.writeFileSync(outputPath, html, "utf-8");
+console.log("✅ Color palette HTML generated at: COLOR_PALETTE.html");
+console.log("Open the file in your browser to view the complete color system!");

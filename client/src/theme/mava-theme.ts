@@ -8,13 +8,13 @@ export const mavaTheme = {
           "200": "#d1c1de",
           "300": "#b399ca",
           "400": "#8e6db1",
-          "500": "#6d4c91",
-          "600": "#5b3f7a",
-          "700": "#4a3364",
-          "800": "#3d2a52",
-          "900": "#2d1f3d",
+          "500": "#3B1E54",
+          "600": "#2d1740",
+          "700": "#241233",
+          "800": "#1a0d26",
+          "900": "#110919",
           foreground: "#fff",
-          DEFAULT: "#6d4c91"
+          DEFAULT: "#3B1E54"
         },
         primary: {
           "50": "#f5f2f7",
@@ -22,13 +22,13 @@ export const mavaTheme = {
           "200": "#d1c1de",
           "300": "#b399ca",
           "400": "#8e6db1",
-          "500": "#6d4c91",
-          "600": "#5b3f7a",
-          "700": "#4a3364",
-          "800": "#3d2a52",
-          "900": "#2d1f3d",
+          "500": "#3B1E54",
+          "600": "#2d1740",
+          "700": "#241233",
+          "800": "#1a0d26",
+          "900": "#110919",
           foreground: "#fff",
-          DEFAULT: "#6d4c91" // Jamuni
+          DEFAULT: "#3B1E54" // Jamuni
         },
         secondary: {
           "50": "#fff8e1",
@@ -36,88 +36,88 @@ export const mavaTheme = {
           "200": "#ffe082",
           "300": "#ffd54f",
           "400": "#ffca28",
-          "500": "#ffb300",
+          "500": "#FFC107",
           "600": "#ffa000",
           "700": "#f57c00",
           "800": "#ef6c00",
           "900": "#e65100",
-          foreground: "#1d1428",
-          DEFAULT: "#ffb300" // Aam
+          foreground: "#3B1E54",
+          DEFAULT: "#FFC107" // Aam
         },
         background: "#ffffff",
-        foreground: "#1d1428",
+        foreground: "#110919",
         content1: {
           DEFAULT: "#FFFFFF",
-          foreground: "#1d1428"
+          foreground: "#110919"
         },
         content2: {
           DEFAULT: "#f5f2f7",
-          foreground: "#1d1428"
+          foreground: "#110919"
         },
-        focus: "#6d4c91",
+        focus: "#3B1E54",
         overlay: "#000000"
       }
     },
     dark: {
       colors: {
         default: {
-          "50": "#1d1428",
-          "100": "#2d1f3d",
-          "200": "#3d2a52",
-          "300": "#4a3364",
-          "400": "#5b3f7a",
-          "500": "#6d4c91",
-          "600": "#8e6db1",
-          "700": "#b399ca",
-          "800": "#d1c1de",
-          "900": "#e6deed",
+          "50": "#1a0d26",
+          "100": "#241233",
+          "200": "#2d1740",
+          "300": "#3B1E54",
+          "400": "#4a3364",
+          "500": "#5b3f7a",
+          "600": "#6d4c91",
+          "700": "#8e6db1",
+          "800": "#b399ca",
+          "900": "#d1c1de",
           foreground: "#fff",
-          DEFAULT: "#6d4c91"
+          DEFAULT: "#5b3f7a"
         },
         primary: {
-          "50": "#1d1428",
-          "100": "#2d1f3d",
-          "200": "#3d2a52",
-          "300": "#4a3364",
-          "400": "#5b3f7a",
-          "500": "#6d4c91",
-          "600": "#8e6db1",
-          "700": "#b399ca",
-          "800": "#d1c1de",
-          "900": "#e6deed",
+          "50": "#1a0d26",
+          "100": "#241233",
+          "200": "#2d1740",
+          "300": "#3B1E54",
+          "400": "#4a3364",
+          "500": "#5b3f7a",
+          "600": "#6d4c91",
+          "700": "#8e6db1",
+          "800": "#b399ca",
+          "900": "#d1c1de",
           foreground: "#fff",
-          DEFAULT: "#6d4c91"
+          DEFAULT: "#5b3f7a"
         },
         secondary: {
           "50": "#e65100",
           "100": "#ef6c00",
           "200": "#f57c00",
           "300": "#ffa000",
-          "400": "#ffb300",
+          "400": "#FFC107",
           "500": "#ffca28",
           "600": "#ffd54f",
           "700": "#ffe082",
           "800": "#ffecb3",
           "900": "#fff8e1",
-          foreground: "#1d1428",
-          DEFAULT: "#ffb300"
+          foreground: "#1a0d26",
+          DEFAULT: "#FFC107"
         },
-        background: "#1d1428", // Premium Dark (Deep Jamuni)
+        background: "#08040d", // Premium Deep Jamuni Black
         foreground: "#f5f2f7",
         content1: {
-          DEFAULT: "#2d1f3d", // Layered surface
+          DEFAULT: "#1a0d26", // Deep Jamuni surface
           foreground: "#f5f2f7"
         },
         content2: {
-          DEFAULT: "#3d2a52",
+          DEFAULT: "#241233",
           foreground: "#f5f2f7"
         },
         content3: {
-          DEFAULT: "#4a3364",
+          DEFAULT: "#2d1740",
           foreground: "#f5f2f7"
         },
-        focus: "#ffb300",
-        overlay: "#1d1428"
+        focus: "#FFC107",
+        overlay: "#08040d"
       }
     }
   },

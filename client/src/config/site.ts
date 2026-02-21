@@ -82,7 +82,7 @@ export const categories = [
     id: "cosmetics",
     name: "Cosmetics",
     icon: "💄",
-    image: "/categories/cosmetics.jpg",
+    image: "https://images.unsplash.com/photo-1596462502278-27bfad450516?q=80&w=800&auto=format&fit=crop",
     description: "Premium beauty & skincare",
     theme: "COSMETICS",
     accent: "#E75480",
@@ -97,7 +97,7 @@ export const categories = [
     id: "candiles",
     name: "Candiles Wala",
     icon: "🕯️",
-    image: "/categories/candles.jpg",
+    image: "https://images.unsplash.com/photo-1605651202774-7d573fd3f12d?q=80&w=800&auto=format&fit=crop",
     description: "Handcrafted aromatic candles",
     theme: "CANDILES",
     accent: "#FFBF00",
@@ -112,7 +112,7 @@ export const categories = [
     id: "hanky",
     name: "Hanky Wala",
     icon: "🧣",
-    image: "/categories/hanky.jpg",
+    image: "https://images.unsplash.com/photo-1584030373081-f37b7bb4fa8e?q=80&w=800&auto=format&fit=crop",
     description: "Pure cotton & silk handkerchiefs",
     theme: "HANKY",
     accent: "#40E0D0",
@@ -127,7 +127,7 @@ export const categories = [
     id: "rasie",
     name: "Rasie Wala",
     icon: "✨",
-    image: "/categories/rasie.jpg",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?q=80&w=800&auto=format&fit=crop",
     description: "Luxury decorative & aesthetic items",
     theme: "RASIE",
     accent: "#D4AF37",
@@ -142,14 +142,14 @@ export const categories = [
 
 // Featured Brands
 export const featuredBrands = [
-  { id: "lakme", name: "Lakmé", logo: "/brands/lakme.png", discount: "Up to 30% Off" },
-  { id: "maybelline", name: "Maybelline", logo: "/brands/maybelline.png", discount: "Buy 2 Get 1" },
-  { id: "loreal", name: "L'Oréal Paris", logo: "/brands/loreal.png", discount: "Min 20% Off" },
-  { id: "nykaa", name: "Nykaa", logo: "/brands/nykaa.png", discount: "Flat 25% Off" },
-  { id: "mac", name: "MAC", logo: "/brands/mac.png", discount: "New Arrivals" },
-  { id: "forest-essentials", name: "Forest Essentials", logo: "/brands/forest.png", discount: "Premium Range" },
-  { id: "ikea", name: "IKEA", logo: "/brands/ikea.png", discount: "Home Essentials" },
-  { id: "home-centre", name: "Home Centre", logo: "/brands/homecentre.png", discount: "Flat 40% Off" },
+  { id: "lakme", name: "Lakmé", logo: "https://logo.clearbit.com/lakme.com", discount: "Up to 30% Off" },
+  { id: "maybelline", name: "Maybelline", logo: "https://logo.clearbit.com/maybelline.com", discount: "Buy 2 Get 1" },
+  { id: "loreal", name: "L'Oréal Paris", logo: "https://logo.clearbit.com/loreal-paris.co.uk", discount: "Min 20% Off" },
+  { id: "nykaa", name: "Nykaa", logo: "https://logo.clearbit.com/nykaa.com", discount: "Flat 25% Off" },
+  { id: "mac", name: "MAC", logo: "https://logo.clearbit.com/maccosmetics.com", discount: "New Arrivals" },
+  { id: "forest-essentials", name: "Forest Essentials", logo: "https://logo.clearbit.com/forestessentialsindia.com", discount: "Premium Range" },
+  { id: "ikea", name: "IKEA", logo: "https://logo.clearbit.com/ikea.com", discount: "Home Essentials" },
+  { id: "home-centre", name: "Home Centre", logo: "https://logo.clearbit.com/homecentre.com", discount: "Flat 40% Off" },
 ];
 
 // Promotional Banners

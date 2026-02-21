@@ -14,7 +14,7 @@ export default function HomePage() {
       <div className="w-full relative overflow-hidden bg-background">
 
         {/* 🚀 ULTRA-PREMIUM EDITORIAL HERO */}
-        <section className="relative min-h-screen flex items-center overflow-hidden px-6">
+        <section className="relative min-h-[85vh] flex items-center overflow-hidden px-6 py-12 lg:py-20">
           {/* Advanced Dynamic Ambient Glows */}
           <div className="ambient-glow w-[800px] h-[800px] bg-primary/10 -top-1/4 -left-1/4" />
           <div className="ambient-glow w-[600px] h-[600px] bg-secondary/15 bottom-0 right-0" style={{ animationDelay: '-5s' }} />
