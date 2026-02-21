@@ -1,4 +1,4 @@
-from email.policy import default
+# from email.policy import default
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional, List
 
@@ -42,7 +42,7 @@ class LoginResponse(BaseModel):
 
 class EmailLoginRequest(BaseModel):
     email: str = Field(..., min_length=5, max_length=255)
-    password: str = Field(..., min_length=8, max_length=255)
+    password: str = Field(..., min_length=8, max_length=255) 
 
 class ForgotPasswordRequest(BaseModel):
     email: str = Field(..., min_length=5, max_length=255)
