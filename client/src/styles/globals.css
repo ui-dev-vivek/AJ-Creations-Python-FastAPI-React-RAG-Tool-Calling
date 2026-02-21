@@ -7,534 +7,212 @@
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
- * MAVA GLOBAL STYLES
- * ═══════════════════════════════════════════════════════════════════════════════
- * Colors:
- * - Primary (Dark Blue): #00296b
- * - Primary Medium: #003f88
- * - Primary Light: #00509d
- * - Secondary (Yellow): #ffd500, #fdc500
- * - Text Dark: #1a1a1a
- * - Text Light: #666666
- * ═══════════════════════════════════════════════════════════════════════════════
- */
+ * MAVA GLOBAL STYLES - COSMETICS & LIFESTYLE REDESIGN
+ * ═══════════════════════════════════════════════════════════════════════════════ */
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   HEADING TAGS (h1 - h6)
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-
-body{
-  background-color: #fdeaee;
+:root {
+  --jamuni-50: #f5f2f7;
+  --jamuni-100: #e6dfee;
+  --jamuni-500: #6d4c91;
+  --jamuni-800: #3d2a52;
+  --jamuni-950: #1d1428;
+  --aam-500: #ffb300;
+  --aam-700: #ff8f00;
 }
 
+body {
+  @apply bg-background text-foreground selection:bg-primary-100 selection:text-primary-900 antialiased;
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* ══════════════════ CUSTOM SCROLLBAR ══════════════════ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary/5;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary/20 rounded-full border-2 border-transparent bg-clip-padding hover:bg-primary/50 transition-colors;
+}
+
+/* ══════════════════ SHARP TYPOGRAPHY ══════════════════ */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  color: #00296b; /* Primary Dark Blue */
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply font-black text-primary uppercase tracking-tighter leading-[0.9] mb-6;
 }
 
 h1 {
-  font-size: 2.5rem;
-  letter-spacing: -0.02em;
+  @apply text-7xl md:text-9xl;
 }
 
 h2 {
-  font-size: 2rem;
-  letter-spacing: -0.015em;
+  @apply text-5xl md:text-7xl;
 }
 
 h3 {
-  font-size: 1.75rem;
-  letter-spacing: -0.01em;
+  @apply text-4xl md:text-5xl;
 }
 
 h4 {
-  font-size: 1.5rem;
+  @apply text-2xl md:text-3xl tracking-normal normal-case;
 }
-
-h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1rem;
-}
-
-/* Dark mode heading colors */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: #ffffff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   PARAGRAPH TAGS (p)
-   ═══════════════════════════════════════════════════════════════════════════════ */
 
 p {
-  color: #1a1a1a; /* Text Dark */
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.3px;
+  @apply text-default-600 leading-[1.6] font-medium text-lg;
 }
 
-p.light,
-p.muted,
-p.secondary {
-  color: #666666; /* Text Light */
-  font-size: 0.95rem;
+/* ══════════════════ REFINED SPACING ══════════════════ */
+.section-padding {
+  @apply py-24 md:py-32;
 }
 
-p.small {
-  font-size: 0.875rem;
+.container-tight {
+  @apply max-w-5xl mx-auto px-6;
 }
 
-p.lead {
-  font-size: 1.25rem;
-  line-height: 1.8;
+/* ══════════════════ EXTREME POLISH UTILITIES ══════════════════ */
+
+/* Animated Ambient Glows */
+@keyframes ambient-pulse {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+    opacity: 0.5;
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+    opacity: 0.4;
+  }
 }
 
-/* Dark mode paragraph colors */
-.dark p {
-  color: #f5f5f5;
+.ambient-glow {
+  @apply absolute pointer-events-none rounded-full blur-[120px] mix-blend-screen;
+  animation: ambient-pulse 15s ease-in-out infinite;
 }
 
-.dark p.light,
-.dark p.muted,
-.dark p.secondary {
-  color: #b0b0b0;
+/* Layered Glassmorphism (Vibe Check) */
+.glass-ultra {
+  @apply bg-white/5 backdrop-blur-[40px] backdrop-saturate-[180%] border border-white/10;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   ANCHOR TAGS (a)
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-a,
-.link {
-  color: #00296b; /* Primary Dark Blue */
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  cursor: pointer;
-  outline: none;
+.dark .glass-ultra {
+  @apply bg-black/20 backdrop-blur-[40px] backdrop-saturate-[180%] border border-white/5;
 }
 
-/* Default link styling */
-a:visited {
-  color: #003f88; /* Primary Medium */
+/* Physically Accurate Layered Shadows */
+.shadow-premium {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 20px 40px -10px rgba(0, 0, 0, 0.15);
 }
 
-/* Hover state - Underline with yellow accent */
-a:hover {
-  color: #ffd500; /* Secondary Yellow */
-  text-decoration: none;
+.shadow-glow-primary {
+  box-shadow:
+    0 0 40px -10px theme('colors.primary.DEFAULT' / 40%),
+    0 0 80px -20px theme('colors.primary.DEFAULT' / 20%);
 }
 
-/* Active state */
-a:active {
-  color: #00509d; /* Primary Light */
+/* Editorial Reveal Masks */
+.mask-hero {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-/* Focus state for accessibility */
-a:focus {
-  outline: 2px solid #00296b;
-  outline-offset: 4px;
-  border-radius: 2px;
+.parallax-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
-/* Link with underline effect */
-a.underline,
-a.text-underline {
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s ease;
+.parallax-layer {
+  transition: transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-a.underline:hover,
-a.text-underline:hover {
-  border-bottom-color: #ffd500;
+/* ══════════════════ PREMIUM UTILITIES ══════════════════ */
+
+/* Glow Effects for Candiles Wala */
+.glow-gold {
+  box-shadow: 0 0 50px -10px rgba(255, 179, 0, 0.3);
 }
 
-/* Secondary link color */
-a.secondary {
-  color: #ffd500;
+.glow-purple {
+  box-shadow: 0 0 50px -10px rgba(109, 76, 145, 0.3);
 }
 
-a.secondary:hover {
-  color: #fdc500;
+/* Glassmorphism */
+.glass-panel {
+  @apply bg-white/10 backdrop-blur-xl border border-white/20;
 }
 
-/* Dark mode link colors */
-.dark a {
-  color: #60b0ff;
+.dark .glass-panel {
+  @apply bg-black/20 backdrop-blur-xl border border-white/10;
 }
 
-.dark a:visited {
-  color: #4a9fff;
+/* Animated Underline */
+.link-hover {
+  @apply relative overflow-hidden;
 }
 
-.dark a:hover {
-  color: #ffd500;
+.link-hover::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-0.5 bg-secondary scale-x-0 origin-right transition-transform duration-500;
 }
 
-.dark a:focus {
-  outline-color: #ffffff;
+.link-hover:hover::after {
+  @apply scale-x-100 origin-left;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   BUTTON STYLES & BTN CLASSES
-   ═══════════════════════════════════════════════════════════════════════════════ */
+/* ══════════════════ TADKA BHADKA ANIMATIONS ══════════════════ */
+@keyframes float {
 
-button,
-.btn,
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none;
-  text-decoration: none;
-  white-space: nowrap;
-  user-select: none;
-  position: relative;
-  overflow: hidden;
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
-/* PRIMARY BUTTON - Dark Blue (#00296b) */
-.btn-primary,
-button.btn-primary,
-.button.primary,
-button.primary {
-  background-color: #00296b;
-  color: #ffffff;
-  border: 2px solid #00296b;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.btn-primary:hover,
-button.btn-primary:hover,
-.button.primary:hover,
-button.primary:hover {
-  background-color: #003f88;
-  border-color: #003f88;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 41, 107, 0.3);
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-.btn-primary:active,
-button.btn-primary:active,
-.button.primary:active,
-button.primary:active {
-  background-color: #00509d;
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(0, 41, 107, 0.2);
+.animate-slow-spin {
+  animation: slow-spin 20s linear infinite;
 }
 
-.btn-primary:disabled,
-button.btn-primary:disabled,
-.button.primary:disabled,
-button.primary:disabled {
-  background-color: #cccccc;
-  border-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* SECONDARY BUTTON - Yellow (#ffd500) */
-.btn-secondary,
-button.btn-secondary,
-.button.secondary,
-button.secondary {
-  background-color: #ffd500;
-  color: #00296b;
-  border: 2px solid #ffd500;
-  font-weight: 700;
-}
-
-.btn-secondary:hover,
-button.btn-secondary:hover,
-.button.secondary:hover,
-button.secondary:hover {
-  background-color: #fdc500;
-  border-color: #fdc500;
-  color: #00296b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 213, 0, 0.3);
-}
-
-.btn-secondary:active,
-button.btn-secondary:active,
-.button.secondary:active,
-button.secondary:active {
-  background-color: #e6b200;
-  border-color: #e6b200;
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(255, 213, 0, 0.2);
-}
-
-.btn-secondary:disabled,
-button.btn-secondary:disabled,
-.button.secondary:disabled,
-button.secondary:disabled {
-  background-color: #cccccc;
-  border-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* OUTLINE BUTTON - Bordered with primary color */
-.btn-outline,
-button.btn-outline,
-.button.outline,
-button.outline {
-  background-color: transparent;
-  color: #00296b;
-  border: 2px solid #00296b;
-}
-
-.btn-outline:hover,
-button.btn-outline:hover,
-.button.outline:hover,
-button.outline:hover {
-  background-color: #00296b;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 41, 107, 0.2);
-}
-
-.btn-outline:active,
-button.btn-outline:active,
-.button.outline:active,
-button.outline:active {
-  background-color: #003f88;
-  border-color: #003f88;
-  transform: translateY(0);
-}
-
-.btn-outline:disabled,
-button.btn-outline:disabled,
-.button.outline:disabled,
-button.outline:disabled {
-  background-color: transparent;
-  border-color: #cccccc;
-  color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* GHOST BUTTON - Minimal with hover background */
-.btn-ghost,
-button.btn-ghost,
-.button.ghost,
-button.ghost {
-  background-color: transparent;
-  color: #00296b;
-  border: 2px solid transparent;
-}
-
-.btn-ghost:hover,
-button.btn-ghost:hover,
-.button.ghost:hover,
-button.ghost:hover {
-  background-color: rgba(0, 41, 107, 0.1);
-  color: #003f88;
-}
-
-.btn-ghost:active,
-button.btn-ghost:active,
-.button.ghost:active,
-button.ghost:active {
-  background-color: rgba(0, 41, 107, 0.2);
-  color: #00509d;
-}
-
-.btn-ghost:disabled,
-button.btn-ghost:disabled,
-.button.ghost:disabled,
-button.ghost:disabled {
-  background-color: transparent;
-  color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* SMALL BUTTON */
-.btn-sm,
-button.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  border-radius: 0.375rem;
-}
-
-/* LARGE BUTTON */
-.btn-lg,
-button.btn-lg {
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
-  border-radius: 0.625rem;
-}
-
-/* FULL WIDTH BUTTON */
-.btn-block,
-button.btn-block {
-  width: 100%;
-  display: flex;
-}
-
-/* BUTTON WITH ICON */
-.btn-icon,
-button.btn-icon {
-  padding: 0.75rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-icon.primary,
-button.btn-icon.primary {
-  background-color: #00296b;
-  color: #ffffff;
-}
-
-.btn-icon.primary:hover {
-  background-color: #003f88;
-}
-
-/* LOADING STATE */
-button:disabled,
-.btn:disabled,
-.button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* FOCUS STATE - Accessibility */
-button:focus,
-.btn:focus,
-.button:focus {
-  outline: 2px solid #00296b;
-  outline-offset: 2px;
-}
-
-.dark button:focus,
-.dark .btn:focus,
-.dark .button:focus {
-  outline-color: #ffffff;
-}
-
-/* Dark mode button styles */
-.dark .btn-primary,
-.dark button.btn-primary {
-  background-color: #0052cc;
-  border-color: #0052cc;
-  color: #ffffff;
-}
-
-.dark .btn-primary:hover,
-.dark button.btn-primary:hover {
-  background-color: #0066ff;
-  border-color: #0066ff;
-}
-
-.dark .btn-ghost:hover {
-  background-color: rgba(96, 176, 255, 0.2);
-  color: #60b0ff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   COMMON UTILITIES
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-/* Text color utilities */
-.text-primary {
-  color: #00296b;
-}
-
-.text-secondary {
-  color: #ffd500;
-}
-
-.text-muted {
-  color: #666666;
-}
-
-/* Background utilities */
-.bg-primary {
-  background-color: #00296b;
-}
-
-.bg-secondary {
-  background-color: #ffd500;
-}
-
-.bg-light {
-  background-color: #f5f5f5;
-}
-
-/* Border utilities */
-.border-primary {
-  border-color: #00296b;
-}
-
-.border-secondary {
-  border-color: #ffd500;
-}
-
-/* Hover utilities */
-.hover\:text-primary:hover {
-  color: #00296b;
-}
-
-.hover\:text-secondary:hover {
-  color: #ffd500;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   RESPONSIVE ADJUSTMENTS
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
+/* ══════════════════ RESPONSIVE ADJUSTMENTS ══════════════════ */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2rem;
+    @apply text-5xl;
   }
 
   h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  .btn,
-  button,
-  .button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.95rem;
+    @apply text-3xl;
   }
 }

@@ -3,221 +3,130 @@ export const mavaTheme = {
     light: {
       colors: {
         default: {
-          "50": "#f0f4f9",
-          "100": "#dae3f0",
-          "200": "#c3d2e7",
-          "300": "#adc1de",
-          "400": "#96b0d5",
-          "500": "#00296b",
-          "600": "#003f88",
-          "700": "#00509d",
-          "800": "#002050",
-          "900": "#001535",
+          "50": "#f5f2f7",
+          "100": "#e6deed",
+          "200": "#d1c1de",
+          "300": "#b399ca",
+          "400": "#8e6db1",
+          "500": "#6d4c91",
+          "600": "#5b3f7a",
+          "700": "#4a3364",
+          "800": "#3d2a52",
+          "900": "#2d1f3d",
           foreground: "#fff",
-          DEFAULT: "#00296b"
+          DEFAULT: "#6d4c91"
         },
         primary: {
-          "50": "#f0f4f9",
-          "100": "#dae3f0",
-          "200": "#c3d2e7",
-          "300": "#adc1de",
-          "400": "#96b0d5",
-          "500": "#00296b",
-          "600": "#003f88",
-          "700": "#00509d",
-          "800": "#002050",
-          "900": "#001535",
+          "50": "#f5f2f7",
+          "100": "#e6deed",
+          "200": "#d1c1de",
+          "300": "#b399ca",
+          "400": "#8e6db1",
+          "500": "#6d4c91",
+          "600": "#5b3f7a",
+          "700": "#4a3364",
+          "800": "#3d2a52",
+          "900": "#2d1f3d",
           foreground: "#fff",
-          DEFAULT: "#00296b"
+          DEFAULT: "#6d4c91" // Jamuni
         },
         secondary: {
-          "50": "#fffbf0",
-          "100": "#fff5dd",
-          "200": "#ffefc9",
-          "300": "#ffe9b5",
-          "400": "#ffe3a1",
-          "500": "#ffd500",
-          "600": "#fdc500",
-          "700": "#e6b200",
-          "800": "#cc9e00",
-          "900": "#b38a00",
-          foreground: "#00296b",
-          DEFAULT: "#ffd500"
-        },
-        success: {
-          "50": "#e1faeb",
-          "100": "#b6f2d0",
-          "200": "#8bebb4",
-          "300": "#60e399",
-          "400": "#36dc7d",
-          "500": "#0bd462",
-          "600": "#09af51",
-          "700": "#078a40",
-          "800": "#05652f",
-          "900": "#03401d",
-          foreground: "#000",
-          DEFAULT: "#0bd462"
-        },
-        warning: {
-          "50": "#fdfee1",
-          "100": "#fafcb8",
-          "200": "#f7fb8e",
-          "300": "#f5f965",
-          "400": "#f2f83b",
-          "500": "#eff612",
-          "600": "#c5cb0f",
-          "700": "#9ba00c",
-          "800": "#727509",
-          "900": "#484a05",
-          foreground: "#000",
-          DEFAULT: "#eff612"
-        },
-        danger: {
-          "50": "#fee1eb",
-          "100": "#fbb8cf",
-          "200": "#f98eb3",
-          "300": "#f76598",
-          "400": "#f53b7c",
-          "500": "#f31260",
-          "600": "#c80f4f",
-          "700": "#9e0c3e",
-          "800": "#73092e",
-          "900": "#49051d",
-          foreground: "#000",
-          DEFAULT: "#f31260"
+          "50": "#fff8e1",
+          "100": "#ffecb3",
+          "200": "#ffe082",
+          "300": "#ffd54f",
+          "400": "#ffca28",
+          "500": "#ffb300",
+          "600": "#ffa000",
+          "700": "#f57c00",
+          "800": "#ef6c00",
+          "900": "#e65100",
+          foreground: "#1d1428",
+          DEFAULT: "#ffb300" // Aam
         },
         background: "#ffffff",
-        foreground: "#000000",
+        foreground: "#1d1428",
         content1: {
           DEFAULT: "#FFFFFF",
-          foreground: "#000"
+          foreground: "#1d1428"
         },
         content2: {
-          DEFAULT: "#2B2B2B",
-          foreground: "#fff"
+          DEFAULT: "#f5f2f7",
+          foreground: "#1d1428"
         },
-        content3: {
-          DEFAULT: "#e4e4e7",
-          foreground: "#000"
-        },
-        content4: {
-          DEFAULT: "#d4d4d8",
-          foreground: "#000"
-        },
-        focus: "#00296b",
+        focus: "#6d4c91",
         overlay: "#000000"
       }
     },
     dark: {
       colors: {
         default: {
-          "50": "#001535",
-          "100": "#002050",
-          "200": "#003f88",
-          "300": "#00509d",
-          "400": "#0066b3",
-          "500": "#00296b",
-          "600": "#004c99",
-          "700": "#0066b3",
-          "800": "#dae3f0",
-          "900": "#f0f4f9",
+          "50": "#1d1428",
+          "100": "#2d1f3d",
+          "200": "#3d2a52",
+          "300": "#4a3364",
+          "400": "#5b3f7a",
+          "500": "#6d4c91",
+          "600": "#8e6db1",
+          "700": "#b399ca",
+          "800": "#d1c1de",
+          "900": "#e6deed",
           foreground: "#fff",
-          DEFAULT: "#00296b"
+          DEFAULT: "#6d4c91"
         },
         primary: {
-          "50": "#001535",
-          "100": "#002050",
-          "200": "#003f88",
-          "300": "#00509d",
-          "400": "#0066b3",
-          "500": "#00296b",
-          "600": "#004c99",
-          "700": "#0066b3",
-          "800": "#dae3f0",
-          "900": "#f0f4f9",
+          "50": "#1d1428",
+          "100": "#2d1f3d",
+          "200": "#3d2a52",
+          "300": "#4a3364",
+          "400": "#5b3f7a",
+          "500": "#6d4c91",
+          "600": "#8e6db1",
+          "700": "#b399ca",
+          "800": "#d1c1de",
+          "900": "#e6deed",
           foreground: "#fff",
-          DEFAULT: "#00296b"
+          DEFAULT: "#6d4c91"
         },
         secondary: {
-          "50": "#b38a00",
-          "100": "#cc9e00",
-          "200": "#e6b200",
-          "300": "#fdc500",
-          "400": "#ffd500",
-          "500": "#ffe3a1",
-          "600": "#ffe9b5",
-          "700": "#ffefc9",
-          "800": "#fff5dd",
-          "900": "#fffbf0",
-          foreground: "#00296b",
-          DEFAULT: "#ffd500"
+          "50": "#e65100",
+          "100": "#ef6c00",
+          "200": "#f57c00",
+          "300": "#ffa000",
+          "400": "#ffb300",
+          "500": "#ffca28",
+          "600": "#ffd54f",
+          "700": "#ffe082",
+          "800": "#ffecb3",
+          "900": "#fff8e1",
+          foreground: "#1d1428",
+          DEFAULT: "#ffb300"
         },
-        success: {
-          "50": "#03401d",
-          "100": "#05652f",
-          "200": "#078a40",
-          "300": "#09af51",
-          "400": "#0bd462",
-          "500": "#36dc7d",
-          "600": "#60e399",
-          "700": "#8bebb4",
-          "800": "#b6f2d0",
-          "900": "#e1faeb",
-          foreground: "#000",
-          DEFAULT: "#0bd462"
-        },
-        warning: {
-          "50": "#484a05",
-          "100": "#727509",
-          "200": "#9ba00c",
-          "300": "#c5cb0f",
-          "400": "#eff612",
-          "500": "#f2f83b",
-          "600": "#f5f965",
-          "700": "#f7fb8e",
-          "800": "#fafcb8",
-          "900": "#fdfee1",
-          foreground: "#000",
-          DEFAULT: "#eff612"
-        },
-        danger: {
-          "50": "#49051d",
-          "100": "#73092e",
-          "200": "#9e0c3e",
-          "300": "#c80f4f",
-          "400": "#f31260",
-          "500": "#f53b7c",
-          "600": "#f76598",
-          "700": "#f98eb3",
-          "800": "#fbb8cf",
-          "900": "#fee1eb",
-          foreground: "#000",
-          DEFAULT: "#f31260"
-        },
-        background: "#ffffff",
-        foreground: "#ffffff",
+        background: "#1d1428", // Premium Dark (Deep Jamuni)
+        foreground: "#f5f2f7",
         content1: {
-          DEFAULT: "#18181b",
-          foreground: "#fff"
+          DEFAULT: "#2d1f3d", // Layered surface
+          foreground: "#f5f2f7"
         },
         content2: {
-          DEFAULT: "#27272a",
-          foreground: "#fff"
+          DEFAULT: "#3d2a52",
+          foreground: "#f5f2f7"
         },
         content3: {
-          DEFAULT: "#3f3f46",
-          foreground: "#fff"
+          DEFAULT: "#4a3364",
+          foreground: "#f5f2f7"
         },
-        content4: {
-          DEFAULT: "#52525b",
-          foreground: "#fff"
-        },
-        focus: "#00296b",
-        overlay: "#ffffff"
+        focus: "#ffb300",
+        overlay: "#1d1428"
       }
     }
   },
   layout: {
-    disabledOpacity: "0.5"
+    disabledOpacity: "0.5",
+    radius: {
+      small: "8px",
+      medium: "12px",
+      large: "20px"
+    }
   }
 };
