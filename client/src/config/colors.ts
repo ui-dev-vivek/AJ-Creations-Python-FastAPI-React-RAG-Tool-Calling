@@ -6,32 +6,45 @@
  * All colors should be referenced from this file to maintain consistency.
  */
 
-// Primary Blues
-export const PRIMARY_DARK = "#00296b"; // Darkest primary - Headers, Nav, Primary CTA
-export const PRIMARY_MEDIUM = "#003f88"; // Medium primary - Active states, Focus rings
-export const PRIMARY_LIGHT = "#00509d"; // Light primary - Hover states, Accents
+// Primary Jamuni (Purple)
+export const PRIMARY_DARK = "#861C74"; // 600
+export const PRIMARY_MEDIUM = "#9E2189"; // 500 / DEFAULT
+export const PRIMARY_LIGHT = "#EF99DF"; // 400
 
-// Secondary Yellow/Gold
-export const SECONDARY_DARK = "#fdc500"; // Dark yellow - Highlight, Badges
-export const SECONDARY_LIGHT = "#ffd500"; // Light yellow - Hover states, Secondary CTA
+// Secondary Aam (Mango)
+export const SECONDARY_DARK = "#E6B323"; // 600
+export const SECONDARY_LIGHT = "#FFC72C"; // 500 / DEFAULT
+
+// Section Specific Colors
+export const COSMETIC_PRIMARY = "#9E2189";
+export const COSMETIC_ACCENT = "#F72585";
+
+export const CANDLE_PRIMARY = "#FFC72C";
+export const CANDLE_ACCENT = "#FB8500";
+
+export const HANKY_PRIMARY = "#4361EE";
+export const HANKY_ACCENT = "#4CC9F0";
+
+export const RESIN_PRIMARY = "#3A0CA3";
+export const RESIN_ACCENT = "#4895EF";
 
 // Text Colors
-export const TEXT_ON_PRIMARY = "#ffffff"; // White text on primary colors
-export const TEXT_ON_SECONDARY = "#00296b"; // Dark text on secondary colors
-export const TEXT_DARK = "#1a1a1a"; // Main body text
-export const TEXT_LIGHT = "#666666"; // Secondary text
+export const TEXT_ON_PRIMARY = "#FFFFFF";
+export const TEXT_ON_SECONDARY = "#2B2B2B";
+export const TEXT_DARK = "#1A1A1A";
+export const TEXT_LIGHT = "#666666";
 
 // Neutral/Background Colors
-export const BG_LIGHT = "#ffffff"; // Main background
-export const BG_GRAY = "#f5f5f5"; // Secondary background
-export const BG_DARK = "#2b2b2b"; // Dark background
-export const BORDER_COLOR = "#e0e0e0"; // Default border color
+export const BG_LIGHT = "#FAFAFB";
+export const BG_GRAY = "#F4F4F6";
+export const BG_DARK = "#0F0F14";
+export const BORDER_COLOR = "#DCDCE3";
 
 // Semantic Colors
-export const SUCCESS = "#0bd462"; // Success state
-export const WARNING = "#eff612"; // Warning state
-export const DANGER = "#f31260"; // Error/Danger state
-export const INFO = "#00509d"; // Info state
+export const SUCCESS = "#16A34A";
+export const WARNING = "#F59E0B";
+export const DANGER = "#DC2626";
+export const INFO = "#118AB2";
 
 /**
  * Color Sets for Easy Theme Usage
@@ -47,6 +60,12 @@ export const colorPalette = {
     dark: SECONDARY_DARK,
     light: SECONDARY_LIGHT,
     foreground: TEXT_ON_SECONDARY,
+  },
+  sections: {
+    cosmetic: { primary: COSMETIC_PRIMARY, accent: COSMETIC_ACCENT },
+    candle: { primary: CANDLE_PRIMARY, accent: CANDLE_ACCENT },
+    hanky: { primary: HANKY_PRIMARY, accent: HANKY_ACCENT },
+    resin: { primary: RESIN_PRIMARY, accent: RESIN_ACCENT },
   },
   text: {
     dark: TEXT_DARK,

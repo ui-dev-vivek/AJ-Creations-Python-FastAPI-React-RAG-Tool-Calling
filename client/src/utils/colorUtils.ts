@@ -4,15 +4,18 @@
  * Helper functions for color manipulations and conversions
  */
 
-import { colorPalette } from './colors';
+import { colorPalette } from "../config/colors";
 
 /**
  * Convert hex color to RGB format
  * @param hex - Hex color code (e.g., '#00296b')
  * @returns RGB object { r, g, b }
  */
-export function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+export function hexToRgb(
+  hex: string,
+): { r: number; g: number; b: number } | null {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+
   return result
     ? {
         r: parseInt(result[1], 16),
@@ -30,10 +33,16 @@ export function hexToRgb(hex: string): { r: number; g: number; b: number } | nul
  * @returns Hex color code
  */
 export function rgbToHex(r: number, g: number, b: number): string {
-  return '#' + [r, g, b].map((x) => {
-    const hex = x.toString(16);
-    return hex.length === 1 ? '0' + hex : hex;
-  }).join('');
+  return (
+    "#" +
+    [r, g, b]
+      .map((x) => {
+        const hex = x.toString(16);
+
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("")
+  );
 }
 
 /**
@@ -44,6 +53,7 @@ export function rgbToHex(r: number, g: number, b: number): string {
  */
 export function lightenColor(hex: string, percent: number): string {
   const rgb = hexToRgb(hex);
+
   if (!rgb) return hex;
 
   const r = Math.min(255, Math.round(rgb.r + (255 - rgb.r) * (percent / 100)));
@@ -61,6 +71,7 @@ export function lightenColor(hex: string, percent: number): string {
  */
 export function darkenColor(hex: string, percent: number): string {
   const rgb = hexToRgb(hex);
+
   if (!rgb) return hex;
 
   const r = Math.max(0, Math.round(rgb.r * (1 - percent / 100)));
@@ -78,7 +89,9 @@ export function darkenColor(hex: string, percent: number): string {
  */
 export function hexToRgba(hex: string, alpha: number): string {
   const rgb = hexToRgb(hex);
+
   if (!rgb) return hex;
+
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${Math.min(1, Math.max(0, alpha))})`;
 }
 
@@ -89,11 +102,13 @@ export function hexToRgba(hex: string, alpha: number): string {
  */
 export function getContrastTextColor(hex: string): string {
   const rgb = hexToRgb(hex);
-  if (!rgb) return '#000000';
+
+  if (!rgb) return "#000000";
 
   // Calculate luminance
   const luminance = (0.299 * rgb.r + 0.587 * rgb.g + 0.114 * rgb.b) / 255;
-  return luminance > 0.5 ? '#000000' : '#ffffff';
+
+  return luminance > 0.5 ? "#000000" : "#ffffff";
 }
 
 /**
@@ -101,12 +116,15 @@ export function getContrastTextColor(hex: string): string {
  * @param modifier - 'dark' | 'medium' | 'light' (default: 'dark')
  * @returns Primary color hex code
  */
-export function getPrimaryColor(modifier: 'dark' | 'medium' | 'light' = 'dark'): string {
+export function getPrimaryColor(
+  modifier: "dark" | "medium" | "light" = "dark",
+): string {
   const colors = {
     dark: colorPalette.primary.dark,
     medium: colorPalette.primary.medium,
     light: colorPalette.primary.light,
   };
+
   return colors[modifier];
 }
 
@@ -115,11 +133,14 @@ export function getPrimaryColor(modifier: 'dark' | 'medium' | 'light' = 'dark'):
  * @param modifier - 'dark' | 'light' (default: 'light')
  * @returns Secondary color hex code
  */
-export function getSecondaryColor(modifier: 'dark' | 'light' = 'light'): string {
+export function getSecondaryColor(
+  modifier: "dark" | "light" = "light",
+): string {
   const colors = {
     dark: colorPalette.secondary.dark,
     light: colorPalette.secondary.light,
   };
+
   return colors[modifier];
 }
 
@@ -128,13 +149,16 @@ export function getSecondaryColor(modifier: 'dark' | 'light' = 'light'): string 
  * @param state - 'success' | 'warning' | 'danger' | 'info'
  * @returns Color hex code
  */
-export function getSemanticColor(state: 'success' | 'warning' | 'danger' | 'info'): string {
+export function getSemanticColor(
+  state: "success" | "warning" | "danger" | "info",
+): string {
   const colors = {
     success: colorPalette.semantic.success,
     warning: colorPalette.semantic.warning,
     danger: colorPalette.semantic.danger,
     info: colorPalette.semantic.info,
   };
+
   return colors[state];
 }
 
@@ -179,10 +203,11 @@ export function createColorCSSVariables(): string {
  */
 export function applyColorVariables(element: HTMLElement): void {
   const cssVars = createColorCSSVariables();
-  const rules = cssVars.split(';').filter((rule) => rule.trim());
+  const rules = cssVars.split(";").filter((rule) => rule.trim());
 
   rules.forEach((rule) => {
-    const [key, value] = rule.split(':').map((s) => s.trim());
+    const [key, value] = rule.split(":").map((s) => s.trim());
+
     if (key && value) {
       element.style.setProperty(key, value);
     }
@@ -203,7 +228,7 @@ export function getColorPalette() {
  * @returns Style object
  */
 export function getButtonStyles(
-  variant: 'primary' | 'secondary' | 'outline' | 'ghost' = 'primary'
+  variant: "primary" | "secondary" | "outline" | "ghost" = "primary",
 ): React.CSSProperties {
   const styles = {
     primary: {
@@ -217,14 +242,14 @@ export function getButtonStyles(
       border: `2px solid ${colorPalette.secondary.light}`,
     },
     outline: {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       color: colorPalette.primary.dark,
       border: `2px solid ${colorPalette.primary.dark}`,
     },
     ghost: {
-      backgroundColor: 'transparent',
+      backgroundColor: "transparent",
       color: colorPalette.primary.dark,
-      border: '2px solid transparent',
+      border: "2px solid transparent",
     },
   };
 

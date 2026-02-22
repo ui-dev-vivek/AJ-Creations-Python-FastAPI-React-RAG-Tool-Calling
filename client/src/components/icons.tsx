@@ -9,11 +9,11 @@ export const MavaLogo: React.FC<IconSvgProps> = ({
   ...props
 }) => (
   <img
-    src="/logo/mava.png"
     alt="Mava Logo"
     height={size || height}
-    width={size || width}
+    src="/logo/mava.png"
     style={{ objectFit: "contain" }}
+    width={size || width}
     {...(props as React.ImgHTMLAttributes<HTMLImageElement>)}
   />
 );

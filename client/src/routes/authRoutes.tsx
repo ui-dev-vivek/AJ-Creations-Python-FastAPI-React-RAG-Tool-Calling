@@ -1,5 +1,5 @@
-
 import { ReactNode } from "react";
+
 import Login from "@/pages/authentication/Login";
 
 interface RouteConfig {
@@ -8,8 +8,8 @@ interface RouteConfig {
 }
 
 export const authRoutes: RouteConfig[] = [
-    {
-        path: "/login",
-        element: <Login />,
-    }
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ];
