@@ -198,14 +198,49 @@ export const categories = [
 
 // Featured Brands
 export const featuredBrands = [
-  { id: "lakme", name: "Lakmé", logo: "/brands/lakme.png", discount: "Up to 30% Off" },
-  { id: "maybelline", name: "Maybelline", logo: "/brands/maybelline.png", discount: "Buy 2 Get 1" },
-  { id: "loreal", name: "L'Oréal Paris", logo: "/brands/loreal.png", discount: "Min 20% Off" },
-  { id: "nykaa", name: "Nykaa", logo: "/brands/nykaa.png", discount: "Flat 25% Off" },
+  {
+    id: "lakme",
+    name: "Lakmé",
+    logo: "/brands/lakme.png",
+    discount: "Up to 30% Off",
+  },
+  {
+    id: "maybelline",
+    name: "Maybelline",
+    logo: "/brands/maybelline.png",
+    discount: "Buy 2 Get 1",
+  },
+  {
+    id: "loreal",
+    name: "L'Oréal Paris",
+    logo: "/brands/loreal.png",
+    discount: "Min 20% Off",
+  },
+  {
+    id: "nykaa",
+    name: "Nykaa",
+    logo: "/brands/nykaa.png",
+    discount: "Flat 25% Off",
+  },
   { id: "mac", name: "MAC", logo: "/brands/mac.png", discount: "New Arrivals" },
-  { id: "forest-essentials", name: "Forest Essentials", logo: "/brands/forest.png", discount: "Premium Range" },
-  { id: "ikea", name: "IKEA", logo: "/brands/ikea.png", discount: "Home Essentials" },
-  { id: "home-centre", name: "Home Centre", logo: "/brands/homecentre.png", discount: "Flat 40% Off" },
+  {
+    id: "forest-essentials",
+    name: "Forest Essentials",
+    logo: "/brands/forest.png",
+    discount: "Premium Range",
+  },
+  {
+    id: "ikea",
+    name: "IKEA",
+    logo: "/brands/ikea.png",
+    discount: "Home Essentials",
+  },
+  {
+    id: "home-centre",
+    name: "Home Centre",
+    logo: "/brands/homecentre.png",
+    discount: "Flat 40% Off",
+  },
 ];
 
 // Promotional Banners

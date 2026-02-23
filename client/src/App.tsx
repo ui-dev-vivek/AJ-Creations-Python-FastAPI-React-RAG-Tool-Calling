@@ -5,14 +5,9 @@ import appRoutes from "./routes";
 function App() {
   return (
     <Routes>
-    
       {appRoutes.map((route, index) => (
-        <Route
-          key={index}
-          path={route.path}
-          element={route.element}
-        />
-      ))} 
+        <Route key={index} element={route.element} path={route.path} />
+      ))}
     </Routes>
   );
 }

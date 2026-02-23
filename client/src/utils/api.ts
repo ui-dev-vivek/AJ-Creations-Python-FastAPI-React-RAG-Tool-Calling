@@ -1,12 +1,18 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 // API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api";
 const API_TIMEOUT = 30000;
 
 // Token management
-const TOKEN_KEY = 'mava_auth_token';
-const REFRESH_TOKEN_KEY = 'mava_refresh_token';
+const TOKEN_KEY = "mava_auth_token";
+const REFRESH_TOKEN_KEY = "mava_refresh_token";
 
 // Get token from localStorage
 export const getToken = (): string | null => {
@@ -39,8 +45,8 @@ const axiosInstance: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: API_TIMEOUT,
   headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
+    "Content-Type": "application/json",
+    Accept: "application/json",
   },
 });
 
@@ -48,14 +54,16 @@ const axiosInstance: AxiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getToken();
+
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response interceptor - Handle errors globally
@@ -72,31 +80,37 @@ axiosInstance.interceptors.response.use(
 
       try {
         const refreshToken = getRefreshToken();
+
         if (refreshToken) {
           const response = await axios.post(`${API_BASE_URL}/auth/refresh`, {
             refreshToken,
           });
 
           const { token, refreshToken: newRefreshToken } = response.data;
+
           setToken(token);
           setRefreshToken(newRefreshToken);
 
           originalRequest.headers.Authorization = `Bearer ${token}`;
+
           return axiosInstance(originalRequest);
         }
       } catch (refreshError) {
         removeToken();
-        window.location.href = '/login';
+        window.location.href = "/login";
+
         return Promise.reject(refreshError);
       }
     }
 
     // Handle other errors
-    const errorMessage = error.response?.data?.message || error.message || 'Something went wrong';
-    console.error('API Error:', errorMessage);
+    const errorMessage =
+      error.response?.data?.message || error.message || "Something went wrong";
+
+    console.error("API Error:", errorMessage);
 
     return Promise.reject(error);
-  }
+  },
 );
 
 // API Response type
@@ -112,9 +126,10 @@ const api = {
   // GET request
   get: async <T = any>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.get<T>(url, config);
+
     return {
       data: response.data,
       success: true,
@@ -126,9 +141,10 @@ const api = {
   post: async <T = any>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.post<T>(url, data, config);
+
     return {
       data: response.data,
       success: true,
@@ -140,9 +156,10 @@ const api = {
   put: async <T = any>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.put<T>(url, data, config);
+
     return {
       data: response.data,
       success: true,
@@ -154,9 +171,10 @@ const api = {
   patch: async <T = any>(
     url: string,
     data?: any,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.patch<T>(url, data, config);
+
     return {
       data: response.data,
       success: true,
@@ -167,9 +185,10 @@ const api = {
   // DELETE request
   delete: async <T = any>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.delete<T>(url, config);
+
     return {
       data: response.data,
       success: true,
@@ -181,19 +200,23 @@ const api = {
   upload: async <T = any>(
     url: string,
     formData: FormData,
-    onProgress?: (progress: number) => void
+    onProgress?: (progress: number) => void,
   ): Promise<ApiResponse<T>> => {
     const response = await axiosInstance.post<T>(url, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
       onUploadProgress: (progressEvent) => {
         if (onProgress && progressEvent.total) {
-          const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          const progress = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total,
+          );
+
           onProgress(progress);
         }
       },
     });
+
     return {
       data: response.data,
       success: true,
@@ -204,12 +227,13 @@ const api = {
   // Download file
   download: async (url: string, filename: string): Promise<void> => {
     const response = await axiosInstance.get(url, {
-      responseType: 'blob',
+      responseType: "blob",
     });
 
     const blob = new Blob([response.data]);
     const downloadUrl = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
+
     link.href = downloadUrl;
     link.download = filename;
     document.body.appendChild(link);

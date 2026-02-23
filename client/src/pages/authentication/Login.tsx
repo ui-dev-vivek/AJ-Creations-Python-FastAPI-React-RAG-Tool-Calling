@@ -1,7 +1,9 @@
-import api from "@/utils/api";
+import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@heroui/input";
 import React from "react";
-import { InputOtp } from "@heroui/input-otp";
+
+import BaseLayout from "@/layouts/base";
+import api from "@/utils/api";
 
 const Login: React.FC = () => {
   const [mobileNumber, setMobileNumber] = React.useState<string>("");
@@ -9,10 +11,6 @@ const Login: React.FC = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [otpSent, setOtpSent] = React.useState<boolean>(false);
   const [otp, setOtp] = React.useState<string>("");
-  const [firstTime, setFirstTime] = React.useState<boolean>(false);
-  const [resendTimer, setResendTimer] = React.useState<number>(0);
-  const [userExists, setUserExists] = React.useState<boolean | null>(null);
-  const [termsAccepted, setTermsAccepted] = React.useState<boolean>(false);
 
   const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMobileNumber(e.target.value);
@@ -21,6 +19,7 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     if (!mobileNumber || mobileNumber.length < 10) {
       setError("Please enter a valid mobile number");
+
       return;
     }
 
@@ -30,10 +29,8 @@ const Login: React.FC = () => {
       const response = await api.post("/auth/authenticate", {
         mobile: mobileNumber,
       });
-      if (response.data.first_time) {
-        setFirstTime(true);
-      }
-      console.log("First Time:", firstTime);
+
+      console.log("OTP Response:", response);
       setOtpSent(true);
     } catch (err: any) {
       setError(
@@ -48,6 +45,7 @@ const Login: React.FC = () => {
   const handleVerifyOtp = async () => {
     if (!otp || otp.length !== 6) {
       setError("Please enter a valid 6-digit OTP");
+
       return;
     }
 
@@ -58,6 +56,7 @@ const Login: React.FC = () => {
         mobile: mobileNumber,
         otp: otp,
       });
+
       console.log("Login Response:", response);
 
       // Store tokens in localStorage
@@ -79,115 +78,166 @@ const Login: React.FC = () => {
 
   const handleOtpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, "").slice(0, 6);
+
     setOtp(value);
   };
 
   return (
-    <div className="min-h-screen bg-[#fdebf0]">
-      {/* 3 Equal Parts Layout - Responsive */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 p-4 md:p-6 lg:p-8 min-h-screen">
-        <div className=""></div>
-        <div className="">
-          <section className="flex flex-col justify-center items-center rounded-lg bg-white shadow-md">
+    <BaseLayout>
+      <div className="min-h-[80vh] flex items-center justify-center py-20 px-4 relative overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#9E2189]/5 rounded-full blur-[120px] -translate-y-1/2 -translate-x-1/2" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#FFC72C]/5 rounded-full blur-[120px] translate-y-1/2 translate-x-1/2" />
+
+        <motion.div
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white rounded-[40px] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] overflow-hidden border border-white/60 backdrop-blur-sm"
+          initial={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Left Side: Visual/Brand Content */}
+          <div className="relative hidden lg:block bg-[#9E2189]">
             <img
+              alt="MAVA Luxury"
+              className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity hover:opacity-100 hover:mix-blend-normal transition-all duration-1000"
               src="/images/login-banner.png"
-              alt=""
-              className="rounded-t-xl"
             />
-            <div className="py-8 px-6 w-full max-w-sm">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#9E2189] via-transparent to-transparent opacity-60" />
+            <div className="absolute bottom-12 left-12 right-12 text-white">
+              <h2 className="text-4xl font-black mb-4 tracking-tighter">
+                Artistry in Every Detail.
+              </h2>
+              <p className="text-white/80 font-medium">
+                Join our community of refined living and exclusive artisanal
+                collections.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side: Form */}
+          <div className="p-12 md:p-16 flex flex-col justify-center">
+            <div className="mb-10">
+              <motion.div
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-[#9E2189]/5 text-[#9E2189] px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] inline-block mb-6"
+                initial={{ opacity: 0, scale: 0.9 }}
+              >
+                Secure Access
+              </motion.div>
+              <h3 className="text-4xl font-black text-[#1A1A1A] tracking-tighter mb-2">
+                Welcome to <span className="text-[#9E2189]">MAVA</span>
+              </h3>
+              <p className="text-default-500 font-medium italic">
+                Enter your details to continue your journey.
+              </p>
+            </div>
+
+            <AnimatePresence mode="wait">
               {!otpSent ? (
-                <>
-                  <h5 className="text-xl font-bold">
-                    Sign Up to view your profile
-                  </h5>
-                  <div className="flex flex-col gap-4 mt-6 bg-white">
-                    +91
-                    <Input
-                      className="w-full bg-white shadow-none border-b border-default-200 focus:outline-none focus:border-primary"
-                      label="Phone Number"
-                      labelPlacement="outside"
-                      placeholder="Enter your phone number"
-                      type="tel"
-                      value={mobileNumber}
-                      onChange={handleMobileChange}
-                      errorMessage={error}
-                      color={error ? "danger" : "default"}
-                    />
-                  </div>
+                <motion.div
+                  key="mobile-input"
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex flex-col gap-6"
+                  exit={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
+                >
+                  <Input
+                    classNames={{
+                      input: "text-lg font-medium",
+                      label:
+                        "text-xs font-black uppercase tracking-widest text-default-400",
+                      inputWrapper:
+                        "h-16 rounded-2xl border-2 border-default-100 hover:border-[#9E2189]/30 transition-all px-6",
+                    }}
+                    color={error ? "danger" : "default"}
+                    errorMessage={error}
+                    label="Mobile Number"
+                    labelPlacement="outside"
+                    placeholder="e.g. 9876543210"
+                    type="tel"
+                    value={mobileNumber}
+                    onChange={handleMobileChange}
+                  />
                   <button
+                    className="h-16 w-full bg-[#9E2189] text-white rounded-2xl font-black text-lg shadow-2xl shadow-[#9E2189]/20 hover:shadow-[#9E2189]/40 hover:-translate-y-1 transition-all active:scale-95 disabled:opacity-50"
+                    disabled={loading}
                     onClick={handleLogin}
-                    disabled={loading}
-                    className="mt-6 w-full bg-primary text-white rounded-md py-4 text-xl hover:bg-primary-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {loading ? "Sending OTP..." : "Continue"}
+                    {loading ? "Initializing..." : "Send Verification Code"}
                   </button>
-                </>
+                </motion.div>
               ) : (
-                <>
-                  <h3 className="text-2xl font-bold">Enter OTP</h3>
-                  <p className="text-gray-600 mt-2">
-                    We've sent a 6-digit OTP to{" "}
-                    <span className="font-semibold">{mobileNumber}</span>
-                  </p>
-                  <div className="flex flex-col gap-4 mt-6">
-                    <InputOtp
-                      length={6}
-                      className="w-full"
-                      label="OTP"
-                      // labelPlacement="outside"
-                      placeholder="Enter 6-digit OTP"
-                      type="text"
-                      value={otp}
-                      onChange={handleOtpChange}
-                      maxLength={6}
-                      errorMessage={error}
-                      color={error ? "danger" : "default"}
-                    />
+                <motion.div
+                  key="otp-input"
+                  animate={{ opacity: 1, x: 0 }}
+                  className="flex flex-col gap-6"
+                  exit={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
+                >
+                  <div className="p-4 bg-[#FFC72C]/10 rounded-2xl border border-[#FFC72C]/20">
+                    <p className="text-sm text-[#861C74] font-medium leading-relaxed">
+                      We&apos;ve sent a 6-digit code to{" "}
+                      <span className="font-bold underline">
+                        {mobileNumber}
+                      </span>
+                      . Please verify your identity.
+                    </p>
                   </div>
+                  <Input
+                    classNames={{
+                      input: "text-2xl font-black tracking-[0.5em] text-center",
+                      label:
+                        "text-xs font-black uppercase tracking-widest text-default-400",
+                      inputWrapper:
+                        "h-20 rounded-2xl border-2 border-[#FFC72C]/30 hover:border-[#FFC72C] transition-all",
+                    }}
+                    color={error ? "danger" : "default"}
+                    errorMessage={error}
+                    label="Verification Code"
+                    labelPlacement="outside"
+                    maxLength={6}
+                    placeholder="000000"
+                    type="text"
+                    value={otp}
+                    onChange={handleOtpChange}
+                  />
                   <button
-                    onClick={handleVerifyOtp}
+                    className="h-16 w-full bg-[#1A1A1A] text-white rounded-2xl font-black text-lg shadow-2xl hover:bg-[#9E2189] hover:-translate-y-1 transition-all active:scale-95 disabled:opacity-50"
                     disabled={loading}
-                    className="mt-6 w-full bg-primary text-white rounded-md py-4 text-xl hover:bg-primary-dark transition disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={handleVerifyOtp}
                   >
-                    {loading ? "Verifying..." : "Verify OTP"}
+                    {loading ? "Verifying..." : "Verify & Continue"}
                   </button>
                   <button
+                    className="text-sm font-bold text-default-500 hover:text-[#9E2189] transition-colors decoration-[#9E2189] underline-offset-4 hover:underline"
                     onClick={() => {
                       setOtpSent(false);
                       setOtp("");
                       setError("");
                     }}
-                    className="mt-3 text-small w-full text-primary"
                   >
-                    Change Mobile Number
+                    Use a different number
                   </button>
-                </>
+                </motion.div>
               )}
-            </div>
-            <div className="px-6 md:px-8 py-5 bg-gradient-to-r rounded-b-xl from-default-50 to-default-100 border-t border-default-200 w-full">
-              <p className="text-xs md:text-xs text-center text-default-600 leading-relaxed">
-                By continuing, you agree to MAVA's&nbsp;
-                <a
-                  className="underline text-primary font-semibold hover:text-primary/80 transition"
-                  href="#"
-                >
-                  Terms & Conditions
+            </AnimatePresence>
+
+            <div className="mt-12 pt-8 border-t border-divider">
+              <p className="text-[10px] text-center text-default-400 font-bold uppercase tracking-[0.1em] leading-relaxed">
+                By continuing, you agree to our&nbsp;
+                <a className="text-[#9E2189] hover:underline" href="/terms">
+                  Terms
                 </a>
                 &nbsp;and&nbsp;
-                <a
-                  className="underline text-primary font-semibold hover:text-primary/80 transition"
-                  href="#"
-                >
+                <a className="text-[#9E2189] hover:underline" href="/privacy">
                   Privacy Policy
                 </a>
               </p>
             </div>
-          </section>
-        </div>
-        {/* Right Section */}
-        <div className=""></div>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </BaseLayout>
   );
 };
 
