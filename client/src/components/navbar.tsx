@@ -90,7 +90,7 @@ export const Navbar = () => {
         className={`w-full sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-default-200" : ""}`}
       >
         {/* ══════════════════ PROMO TICKER (Primary bg - Jamuni) ══════════════════ */}
-        <div className="bg-primary text-primary-foreground overflow-hidden">
+        {/* <div className="bg-primary text-primary-foreground overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-center h-9 px-4 text-xs sm:text-sm">
               <div className="flex items-center gap-3 animate-fade-in">
@@ -102,14 +102,13 @@ export const Navbar = () => {
                 <span className="font-bold hidden sm:inline">
                   {promotions[currentPromo].subtitle}
                 </span>
-                {/* Promo code badge - Secondary highlight */}
                 <code className="ml-2 bg-secondary text-[#00296b] px-2 py-0.5 rounded text-[10px] sm:text-xs font-bold tracking-wider">
                   {promotions[currentPromo].code}
                 </code>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* ══════════════════ MAIN NAVBAR ══════════════════ */}
         <div className={`bg-background transition-all duration-300`}>
@@ -130,25 +129,7 @@ export const Navbar = () => {
 
               {/* ──── Desktop Search ──── */}
               <div className="hidden lg:flex flex-1 max-w-xl mx-8">
-                <div className="relative w-full group">
-                  <Input
-                    classNames={{
-                      inputWrapper:
-                        "bg-default-100 hover:bg-default-200/50 border border-transparent focus-within:border-primary/20 h-11 rounded-md pl-4 pr-1 transition-all duration-300 group-focus-within:shadow-lg group-focus-within:shadow-primary/5",
-                      input: "text-sm placeholder:text-default-400 font-medium",
-                    }}
-                    endContent={
-                      <Button
-                        isIconOnly
-                        className="bg-primary text-primary-foreground rounded-md h-9 w-9 active:scale-95 transition-transform"
-                        size="sm"
-                      >
-                        <BiSearch className="text-lg" />
-                      </Button>
-                    }
-                    placeholder="Search for perfection..."
-                  />
-                </div>
+                <div className="relative w-full group"></div>
               </div>
 
               {/* ──── Right Actions ──── */}
@@ -331,6 +312,11 @@ export const Navbar = () => {
               {/* Nav Links - Primary for active/hover */}
               <div className="flex items-center gap-1">
                 {[
+                  {
+                    label: "Home",
+                    href: "/",
+                    color: "text-[#9e21AA]",
+                  },
                   {
                     label: "Cosmetic Wala",
                     href: "/cosmetic-wala",

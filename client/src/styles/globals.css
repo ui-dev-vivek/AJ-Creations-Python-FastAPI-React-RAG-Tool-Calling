@@ -7,22 +7,18 @@
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════════
- * MAVA GLOBAL STYLES
- * ═══════════════════════════════════════════════════════════════════════════════
- * Colors:
- * - Primary Jamuni: #9E2189
- * - Secondary Aam: #FFC72C
- * - Text Dark: #1A1A1A
- * - Text Light: #666666
+ * GLOBAL STYLES - Clean & Simple
  * ═══════════════════════════════════════════════════════════════════════════════
  */
 
-/* ═══════════════════════════════════════════════════════════════════════════════
-   HEADING TAGS (h1 - h6)
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
 body {
   background-color: #fafafb;
+  color: #1a1a1a;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -31,745 +27,93 @@ h3,
 h4,
 h5,
 h6 {
-  color: #861c74;
-  /* Primary Dark Jamuni */
+  color: #1a1a1a;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
   margin-bottom: 0.5rem;
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
-    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
   font-size: 2.5rem;
-  letter-spacing: -0.02em;
 }
-
 h2 {
   font-size: 2rem;
-  letter-spacing: -0.015em;
 }
-
 h3 {
   font-size: 1.75rem;
-  letter-spacing: -0.01em;
 }
-
-h4 {
-  font-size: 1.5rem;
-}
-
-h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1rem;
-}
-
-/* Dark mode heading colors */
-.dark h1,
-.dark h2,
-.dark h3,
-.dark h4,
-.dark h5,
-.dark h6 {
-  color: #ffffff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   PARAGRAPH TAGS (p)
-   ═══════════════════════════════════════════════════════════════════════════════ */
 
 p {
-  color: #1a1a1a;
-  /* Text Dark */
-  font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.3px;
 }
 
-p.light,
-p.muted,
-p.secondary {
-  color: #666666;
-  /* Text Light */
-  font-size: 0.95rem;
-}
-
-p.small {
-  font-size: 0.875rem;
-}
-
-p.lead {
-  font-size: 1.25rem;
-  line-height: 1.8;
-}
-
-/* Dark mode paragraph colors */
-.dark p {
-  color: #f5f5f5;
-}
-
-.dark p.light,
-.dark p.muted,
-.dark p.secondary {
-  color: #b0b0b0;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   ANCHOR TAGS (a)
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-a,
-.link {
-  color: #861c74;
-  /* Primary Dark Jamuni */
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  cursor: pointer;
-  outline: none;
-}
-
-/* Default link styling */
-a:visited {
+a {
   color: #9e2189;
-  /* Primary Medium Jamuni */
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
-/* Hover state - Underline with yellow accent */
 a:hover {
-  color: #ffc72c;
-  /* Secondary Aam */
-  text-decoration: none;
+  color: #861c74;
+  text-decoration: underline;
 }
 
-/* Active state */
-a:active {
-  color: #ef99df;
-  /* Primary Light Jamuni */
-}
-
-/* Focus state for accessibility */
-a:focus {
-  outline: 2px solid #9e2189;
-  outline-offset: 4px;
-  border-radius: 2px;
-}
-
-/* Link with underline effect */
-a.underline,
-a.text-underline {
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-a.underline:hover,
-a.text-underline:hover {
-  border-bottom-color: #ffc72c;
-}
-
-/* Secondary link color */
-a.secondary {
-  color: #ffc72c;
-}
-
-a.secondary:hover {
-  color: #e6b323;
-}
-
-/* Dark mode link colors */
-.dark a {
-  color: #60b0ff;
-}
-
-.dark a:visited {
-  color: #4a9fff;
-}
-
-.dark a:hover {
-  color: #ffc72c;
-}
-
-.dark a:focus {
-  outline-color: #ffffff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   BUTTON STYLES & BTN CLASSES
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-button,
-.btn,
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  outline: none;
-  text-decoration: none;
-  white-space: nowrap;
-  user-select: none;
-  position: relative;
-  overflow: hidden;
-}
-
-/* PRIMARY BUTTON - Dark Blue (#00296b) */
+/* Simple Button Styles */
 .btn-primary,
-button.btn-primary,
-.button.primary,
 button.primary {
   background-color: #9e2189;
   color: #ffffff;
-  border: 2px solid #9e2189;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
 }
 
-.btn-primary:hover,
-button.btn-primary:hover,
-.button.primary:hover,
-button.primary:hover {
+.btn-primary:hover {
   background-color: #861c74;
-  border-color: #861c74;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(158, 33, 137, 0.3);
 }
 
-/* --- Ultra-Premium Polish --- */
-.noise-overlay {
-  position: fixed;
-  inset: -200%;
-  z-index: 9999;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  animation: noise 0.5s infinite;
+/* Remove all fancy animations and overlays */
+.noise-overlay,
+.scroll-progress,
+.shimmer-wrapper::after,
+.text-gradient-shimmer,
+.animate-blob {
+  display: none !important;
 }
 
-@keyframes noise {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-1%, -1%);
-  }
-
-  20% {
-    transform: translate(-2%, 1%);
-  }
-
-  30% {
-    transform: translate(1%, -2%);
-  }
-
-  40% {
-    transform: translate(-1%, 3%);
-  }
-
-  50% {
-    transform: translate(-2%, 1%);
-  }
-
-  60% {
-    transform: translate(3%, -1%);
-  }
-
-  70% {
-    transform: translate(0, 2%);
-  }
-
-  80% {
-    transform: translate(-3%, 1%);
-  }
-
-  90% {
-    transform: translate(1%, 3%);
-  }
-
-  100% {
-    transform: translate(1%, 1%);
-  }
-}
-
-/* Custom Cursor Hide */
-* {
-  cursor: none !important;
-}
-
-@media (max-width: 1024px) {
-  * {
-    cursor: auto !important;
-  }
-}
-
-/* Typography Refinements */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: #ffc72c;
-  transform-origin: 0%;
-  z-index: 10000;
-}
-
-/* --- Deep Immersive Animations --- */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.shimmer-wrapper {
-  position: relative;
-  overflow: hidden;
-  background: #f6f7f8;
-}
-
-.shimmer-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    transparent 100%
-  );
-  animation: shimmer 1.5s infinite;
-}
-
-.text-gradient-shimmer {
-  background: linear-gradient(
-    90deg,
-    #9e2189 0%,
-    #ffc72c 25%,
-    #9e2189 50%,
-    #ffc72c 75%,
-    #9e2189 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 5s linear infinite;
-}
-
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
-}
-
-/* --- Sensory & Fluid Mastery --- */
-/* Custom Luxury Scrollbar */
+/* Simple Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fdf2fb;
-  /* Light Jamuni tint */
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #9e2189, #ffc72c);
-  border-radius: 10px;
-  border: 2px solid #fdf2fb;
+  background: #ccc;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9e2189;
+  background: #aaa;
 }
-
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  display: flex;
-}
-
-.marquee-content {
-  display: flex;
-  flex-shrink: 0;
-  min-width: 100%;
-  gap: 2rem;
-  animation: marquee-scroll 30s linear infinite;
-}
-
-@keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.text-reveal-char {
-  display: inline-block;
-  overflow: hidden;
-}
-
-.liquid-button {
-  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.liquid-button:active {
-  transform: scale(0.95);
-  filter: contrast(1.2) brightness(1.1);
-}
-
-@keyframes blob {
-  0% {
-    transform: scale(1) translate(0, 0);
-  }
-
-  33% {
-    transform: scale(1.1) translate(30px, -50px);
-  }
-
-  66% {
-    transform: scale(0.9) translate(-20px, 20px);
-  }
-
-  100% {
-    transform: scale(1) translate(0, 0);
-  }
-}
-
-.animate-blob {
-  animation: blob 20s infinite alternate;
-}
-
-.btn-primary:active,
-button.btn-primary:active,
-.button.primary:active,
-button.primary:active {
-  background-color: #ef99df;
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(158, 33, 137, 0.2);
-}
-
-.btn-primary:disabled,
-button.btn-primary:disabled,
-.button.primary:disabled,
-button.primary:disabled {
-  background-color: #cccccc;
-  border-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* SECONDARY BUTTON - Yellow (#ffd500) */
-.btn-secondary,
-button.btn-secondary,
-.button.secondary,
-button.secondary {
-  background-color: #ffc72c;
-  color: #2b2b2b;
-  border: 2px solid #ffc72c;
-  font-weight: 700;
-}
-
-.btn-secondary:hover,
-button.btn-secondary:hover,
-.button.secondary:hover,
-button.secondary:hover {
-  background-color: #e6b323;
-  border-color: #e6b323;
-  color: #2b2b2b;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 199, 44, 0.3);
-}
-
-.btn-secondary:active,
-button.btn-secondary:active,
-.button.secondary:active,
-button.secondary:active {
-  background-color: #cc9f1f;
-  border-color: #cc9f1f;
-  transform: translateY(0);
-  box-shadow: 0 2px 6px rgba(255, 199, 44, 0.2);
-}
-
-.btn-secondary:disabled,
-button.btn-secondary:disabled,
-.button.secondary:disabled,
-button.secondary:disabled {
-  background-color: #cccccc;
-  border-color: #cccccc;
-  color: #666666;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* OUTLINE BUTTON - Bordered with primary color */
-.btn-outline,
-button.btn-outline,
-.button.outline,
-button.outline {
-  background-color: transparent;
-  color: #9e2189;
-  border: 2px solid #9e2189;
-}
-
-.btn-outline:hover,
-button.btn-outline:hover,
-.button.outline:hover,
-button.outline:hover {
-  background-color: #9e2189;
-  color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(158, 33, 137, 0.2);
-}
-
-.btn-outline:active,
-button.btn-outline:active,
-.button.outline:active,
-button.outline:active {
-  background-color: #003f88;
-  border-color: #003f88;
-  transform: translateY(0);
-}
-
-.btn-outline:disabled,
-button.btn-outline:disabled,
-.button.outline:disabled,
-button.outline:disabled {
-  background-color: transparent;
-  border-color: #cccccc;
-  color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* GHOST BUTTON - Minimal with hover background */
-.btn-ghost,
-button.btn-ghost,
-.button.ghost,
-button.ghost {
-  background-color: transparent;
-  color: #9e2189;
-  border: 2px solid transparent;
-}
-
-.btn-ghost:hover,
-button.btn-ghost:hover,
-.button.ghost:hover,
-button.ghost:hover {
-  background-color: rgba(158, 33, 137, 0.1);
-  color: #861c74;
-}
-
-.btn-ghost:active,
-button.btn-ghost:active,
-.button.ghost:active,
-button.ghost:active {
-  background-color: rgba(0, 41, 107, 0.2);
-  color: #00509d;
-}
-
-.btn-ghost:disabled,
-button.btn-ghost:disabled,
-.button.ghost:disabled,
-button.ghost:disabled {
-  background-color: transparent;
-  color: #cccccc;
-  cursor: not-allowed;
-}
-
-/* SMALL BUTTON */
-.btn-sm,
-button.btn-sm {
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  border-radius: 0.375rem;
-}
-
-/* LARGE BUTTON */
-.btn-lg,
-button.btn-lg {
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
-  border-radius: 0.625rem;
-}
-
-/* FULL WIDTH BUTTON */
-.btn-block,
-button.btn-block {
-  width: 100%;
-  display: flex;
-}
-
-/* BUTTON WITH ICON */
-.btn-icon,
-button.btn-icon {
-  padding: 0.75rem;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-icon.primary,
-button.btn-icon.primary {
-  background-color: #9e2189;
-  color: #ffffff;
-}
-
-.btn-icon.primary:hover {
-  background-color: #003f88;
-}
-
-/* LOADING STATE */
-button:disabled,
-.btn:disabled,
-.button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* FOCUS STATE - Accessibility */
-button:focus,
-.btn:focus,
-.button:focus {
-  outline: 2px solid #00296b;
-  outline-offset: 2px;
-}
-
-.dark button:focus,
-.dark .btn:focus,
-.dark .button:focus {
-  outline-color: #ffffff;
-}
-
-/* Dark mode button styles */
-.dark .btn-primary,
-.dark button.btn-primary {
-  background-color: #0052cc;
-  border-color: #0052cc;
-  color: #ffffff;
-}
-
-.dark .btn-primary:hover,
-.dark button.btn-primary:hover {
-  background-color: #0066ff;
-  border-color: #0066ff;
-}
-
-.dark .btn-ghost:hover {
-  background-color: rgba(96, 176, 255, 0.2);
-  color: #60b0ff;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   COMMON UTILITIES
-   ═══════════════════════════════════════════════════════════════════════════════ */
-
-/* Text color utilities */
-.text-primary {
-  color: #9e2189;
-}
-
-.text-secondary {
-  color: #ffc72c;
-}
-
-.text-muted {
-  color: #666666;
-}
-
-/* Background utilities */
-.bg-primary {
-  background-color: #9e2189;
-}
-
-.bg-secondary {
-  background-color: #ffc72c;
-}
-
-.bg-light {
-  background-color: #f5f5f5;
-}
-
-/* Border utilities */
-.border-primary {
-  border-color: #9e2189;
-}
-
-.border-secondary {
-  border-color: #ffc72c;
-}
-
-/* Hover utilities */
-.hover\:text-primary:hover {
-  color: #9e2189;
-}
-
-.hover\:text-secondary:hover {
-  color: #ffc72c;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════════
-   RESPONSIVE ADJUSTMENTS
-   ═══════════════════════════════════════════════════════════════════════════════ */
 
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
   }
-
   h2 {
     font-size: 1.5rem;
   }
-
   h3 {
     font-size: 1.25rem;
-  }
-
-  .btn,
-  button,
-  .button {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.95rem;
   }
 }

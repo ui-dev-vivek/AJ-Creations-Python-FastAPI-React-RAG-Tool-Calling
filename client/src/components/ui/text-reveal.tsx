@@ -31,7 +31,7 @@ const Word = ({ children, progress, range }: any) => {
 
   return (
     <span className="relative">
-      <span className="absolute opacity-10">{children}</span>
+      <span className="absolute opacity-12 text-dark">{children}</span>
       <motion.span style={{ opacity }}>{children}</motion.span>
     </span>
   );
