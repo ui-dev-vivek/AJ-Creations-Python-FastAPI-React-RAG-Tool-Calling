@@ -30,7 +30,7 @@ class Categories(Base):
         cascade='all, delete-orphan',
         foreign_keys=[parent_id]
     )
-    
+
     # One to Many
     products: Mapped[list["Products"]] = relationship(back_populates="category")
 
@@ -42,7 +42,7 @@ class ProductCategories(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     product_id: Mapped[int] = mapped_column(ForeignKey('products.id', ondelete='CASCADE'), nullable=False)
     category_id: Mapped[int] = mapped_column(ForeignKey('categories.id', ondelete='CASCADE'), nullable=False)
-    
+
     # Many to Many (junction table)
     product: Mapped["Products"] = relationship(back_populates="product_categories")
     category: Mapped["Categories"] = relationship()
@@ -59,10 +59,10 @@ class Brand(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime, index=True)
-    
+
     # One to Many
     products: Mapped[list["Products"]] = relationship(back_populates="brand")
-    
+
 
 class Products(Base):
     __tablename__ = "products"
@@ -77,24 +77,24 @@ class Products(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime, index=True)
-    
+
     # Many to One
     brand: Mapped["Brand"] = relationship(back_populates="products")
-    
+
     # Many to One
     category: Mapped["Categories"] = relationship(back_populates="products")
-    
+
     # One to Many
     images: Mapped[list["ProductImages"]] = relationship(back_populates="product", cascade="all, delete-orphan")
-    
+
     # One to One
     inventory: Mapped["Inventories"] = relationship(
         back_populates="product", uselist=False, cascade="all, delete-orphan"
     )
-    
+
     # One to Many
     variants: Mapped[list["ProductVariants"]] = relationship(back_populates="product", cascade="all, delete-orphan")
-    
+
     # One to Many
     videos: Mapped[list["ProductVideos"]] = relationship(back_populates="product", cascade="all, delete-orphan")
 
@@ -114,10 +114,10 @@ class ProductVariants(Base):
 
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     # Many to One
     product: Mapped["Products"] = relationship(back_populates="variants")
-    
+
     # One to Many
     variant_attributes: Mapped[list["ProductVariantAttributes"]] = relationship(
         back_populates="product_variant", cascade="all, delete-orphan"
@@ -129,7 +129,7 @@ class Attributes(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(255), nullable=False)
-    
+
     # One to Many
     attribute_values: Mapped[list["AttributeValues"]] = relationship(back_populates="attribute", cascade="all, delete-orphan")
 
@@ -140,10 +140,10 @@ class AttributeValues(Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     attribute_id: Mapped[int] = mapped_column(ForeignKey("attributes.id", ondelete="CASCADE"), nullable=False)
     value: Mapped[str] = mapped_column(String(255), nullable=False)
-    
+
     # Many to One
     attribute: Mapped["Attributes"] = relationship(back_populates="attribute_values")
-    
+
     # One to Many
     variant_attributes: Mapped[list["ProductVariantAttributes"]] = relationship(
         back_populates="attribute_value", cascade="all, delete-orphan"
@@ -162,11 +162,11 @@ class ProductVariantAttributes(Base):
     )
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     __table_args__ = (
         UniqueConstraint('product_variant_id', 'attribute_value_id', name='uq_variant_attribute'),
     )
-    
+
     # Many to Many (junction table)
     product_variant: Mapped["ProductVariants"] = relationship(back_populates="variant_attributes")
     attribute_value: Mapped["AttributeValues"] = relationship(back_populates="variant_attributes")

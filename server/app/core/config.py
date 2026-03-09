@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     debug_mode: bool = False
 
     app_host: str = "127.0.0.1"
-    app_port: int = 8000
+    app_port: int = 1000
 
     # ---------- Database ----------
     database_url: str

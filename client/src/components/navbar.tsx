@@ -15,6 +15,7 @@
  */
 
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { Input } from "@heroui/input";
@@ -30,7 +31,6 @@ import {
   BiShoppingBag,
   BiHeart,
   BiUser,
-  BiMenu,
   BiChevronDown,
   BiChevronRight,
   BiPhone,
@@ -42,14 +42,16 @@ import {
 } from "react-icons/bi";
 import { MdLocalShipping } from "react-icons/md";
 import { IoFlashOutline } from "react-icons/io5";
+import { Menu } from "lucide-react";
 
 import { siteConfig, categories, promotions } from "../config/site";
 
 import { ThemeSwitch } from "./theme-switch";
 import { MavaLogo } from "./icons";
-import { Magnetic } from "./ui/magnetic";
 
 export const Navbar = () => {
+  const location = useLocation();
+  const pathname = location.pathname;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [currentPromo, setCurrentPromo] = useState(0);
@@ -85,7 +87,7 @@ export const Navbar = () => {
   return (
     <>
       <header
-        className={`w-full sticky top-0 z-50 transition-all duration-500 ${isScrolled ? "shadow-2xl shadow-primary/10" : ""}`}
+        className={`w-full sticky top-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/80 backdrop-blur-xl border-b border-default-200" : ""}`}
       >
         {/* ══════════════════ PROMO TICKER (Primary bg - Jamuni) ══════════════════ */}
         <div className="bg-primary text-primary-foreground overflow-hidden">
@@ -110,9 +112,7 @@ export const Navbar = () => {
         </div>
 
         {/* ══════════════════ MAIN NAVBAR ══════════════════ */}
-        <div
-          className={`bg-background transition-all duration-300 ${isScrolled ? "border-b border-default-200" : ""}`}
-        >
+        <div className={`bg-background transition-all duration-300`}>
           <div className="max-w-7xl mx-auto px-4 lg:px-6">
             <div className="flex items-center justify-between h-16 lg:h-[72px] gap-4">
               {/* ──── Logo ──── */}
@@ -120,19 +120,11 @@ export const Navbar = () => {
                 className="flex items-center gap-3 group flex-shrink-0"
                 href="/"
               >
-                <div className="relative w-10 h-10 lg:w-11 lg:h-11">
-                  <div className="absolute inset-0 bg-primary rounded-2xl opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <MavaLogo size={24} />
-                  </div>
-                </div>
-                <div className="hidden md:block">
-                  <h1 className="text-xl font-black tracking-tight text-primary">
-                    MAVA
-                  </h1>
-                  <p className="text-[10px] text-default-400 -mt-0.5 tracking-widest font-bold">
-                    MODERN • AESTHETIC
-                  </p>
+                <div className="flex-shrink-0 flex items-center justify-center p-1">
+                  <MavaLogo
+                    className="w-auto h-8 lg:h-10 object-contain"
+                    size={100}
+                  />
                 </div>
               </Link>
 
@@ -142,19 +134,19 @@ export const Navbar = () => {
                   <Input
                     classNames={{
                       inputWrapper:
-                        "bg-default-100 hover:bg-default-200/70 border-0 h-11 rounded-2xl pl-4 pr-2 transition-all duration-200 group-focus-within:ring-2 group-focus-within:ring-primary/30",
-                      input: "text-sm",
+                        "bg-default-100 hover:bg-default-200/50 border border-transparent focus-within:border-primary/20 h-11 rounded-md pl-4 pr-1 transition-all duration-300 group-focus-within:shadow-lg group-focus-within:shadow-primary/5",
+                      input: "text-sm placeholder:text-default-400 font-medium",
                     }}
                     endContent={
                       <Button
                         isIconOnly
-                        className="bg-primary text-primary-foreground rounded-xl h-8 w-8 min-w-8"
+                        className="bg-primary text-primary-foreground rounded-md h-9 w-9 active:scale-95 transition-transform"
                         size="sm"
                       >
                         <BiSearch className="text-lg" />
                       </Button>
                     }
-                    placeholder="What are you looking for?"
+                    placeholder="Search for perfection..."
                   />
                 </div>
               </div>
@@ -164,11 +156,13 @@ export const Navbar = () => {
                 {/* Mobile Search Toggle */}
                 <Button
                   isIconOnly
-                  className="lg:hidden w-10 h-10 rounded-xl"
+                  className="lg:hidden w-10 h-10 rounded-md active:scale-90 transition-transform"
                   variant="light"
                   onPress={() => setIsSearchOpen(!isSearchOpen)}
                 >
-                  <BiSearch className="text-xl text-default-600" />
+                  <BiSearch
+                    className={`text-xl transition-colors ${isSearchOpen ? "text-primary" : "text-default-600"}`}
+                  />
                 </Button>
 
                 {/* Theme Switch */}
@@ -180,10 +174,10 @@ export const Navbar = () => {
                 <Dropdown placement="bottom-end">
                   <DropdownTrigger>
                     <Button
-                      className="hidden sm:flex items-center gap-2 h-10 px-3 rounded-xl"
+                      className="hidden sm:flex items-center gap-2 h-10 px-3 rounded-md"
                       variant="light"
                     >
-                      <div className="w-8 h-8 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center">
                         <BiUser className="text-primary text-lg" />
                       </div>
                       <span className="hidden lg:block text-sm font-medium">
@@ -231,50 +225,46 @@ export const Navbar = () => {
                 </Dropdown>
 
                 {/* Wishlist - Badge uses Secondary for highlight */}
-                <Magnetic>
-                  <Button
-                    isIconOnly
-                    as={Link}
-                    className="hidden sm:flex w-10 h-10 rounded-xl relative"
-                    href="/wishlist"
-                    variant="light"
-                  >
-                    <BiHeart className="text-xl text-default-600 hover:text-primary transition-colors" />
-                    <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
-                      3
-                    </span>
-                  </Button>
-                </Magnetic>
+                <Button
+                  isIconOnly
+                  as={Link}
+                  className="hidden sm:flex w-10 h-10 rounded relative"
+                  href="/wishlist"
+                  variant="light"
+                >
+                  <BiHeart className="text-xl text-default-600 hover:text-primary transition-colors" />
+                  <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
+                    3
+                  </span>
+                </Button>
 
                 {/* Cart - CTA style uses Primary, badge uses Secondary */}
-                <Magnetic>
-                  <Button
-                    as={Link}
-                    className="h-10 px-3 rounded-xl bg-primary/10 hover:bg-primary/20 gap-2"
-                    href="/cart"
-                    variant="flat"
-                  >
-                    <div className="relative">
-                      <BiShoppingBag className="text-xl text-primary" />
-                      <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
-                        2
-                      </span>
-                    </div>
-                    {/* Price display - Secondary color for highlights */}
-                    <span className="hidden sm:block text-sm font-semibold text-secondary">
-                      ₹2,499
+                <Button
+                  as={Link}
+                  className="h-10 px-3 rounded-md bg-primary/10 hover:bg-primary/20 gap-2"
+                  href="/cart"
+                  variant="flat"
+                >
+                  <div className="relative">
+                    <BiShoppingBag className="text-xl text-primary" />
+                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-none flex items-center justify-center">
+                      2
                     </span>
-                  </Button>
-                </Magnetic>
+                  </div>
+                  {/* Price display - Secondary color for highlights */}
+                  <span className="hidden sm:block text-sm font-bold text-primary dark:text-secondary">
+                    ₹2,499
+                  </span>
+                </Button>
 
                 {/* Mobile Menu Toggle */}
                 <Button
                   isIconOnly
-                  className="lg:hidden w-10 h-10 rounded-xl bg-default-100"
+                  className="lg:hidden w-10 h-10 rounded-md bg-default-100"
                   variant="flat"
                   onPress={() => setIsMenuOpen(true)}
                 >
-                  <BiMenu className="text-xl" />
+                  <Menu className="text-xl" />
                 </Button>
               </div>
             </div>
@@ -289,9 +279,9 @@ export const Navbar = () => {
               <Dropdown>
                 <DropdownTrigger>
                   <Button
-                    className="h-9 px-4 rounded-xl font-medium gap-2"
+                    className="h-9 px-4 rounded-md font-medium gap-2"
                     color="primary"
-                    startContent={<BiMenu className="text-lg" />}
+                    startContent={<Menu className="text-lg" />}
                     variant="solid"
                   >
                     All Categories
@@ -349,7 +339,7 @@ export const Navbar = () => {
                   {
                     label: "Candle Wala",
                     href: "/candle-wala",
-                    color: "text-[#FFC72C]",
+                    color: "text-primary dark:text-secondary",
                   },
                   {
                     label: "Hanky Wala",
@@ -362,14 +352,20 @@ export const Navbar = () => {
                     color: "text-[#3a0ca3]",
                   },
                 ].map((item) => (
-                  <Magnetic key={item.href}>
-                    <Link
-                      className={`h-9 px-4 rounded-xl text-sm font-bold ${item.color} hover:bg-default-100 transition-all flex items-center gap-1.5`}
-                      href={item.href}
-                    >
-                      {item.label}
-                    </Link>
-                  </Magnetic>
+                  <Link
+                    key={item.href}
+                    className={`h-9 px-4 rounded-md text-sm font-bold transition-all flex items-center gap-1.5 relative group ${
+                      pathname === item.href
+                        ? "text-black dark:text-secondary bg-default-100"
+                        : `${item.color} hover:text-black dark:hover:text-secondary hover:bg-default-50`
+                    }`}
+                    href={item.href}
+                  >
+                    {item.label}
+                    {pathname === item.href && (
+                      <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary rounded-full" />
+                    )}
+                  </Link>
                 ))}
               </div>
 
@@ -402,7 +398,7 @@ export const Navbar = () => {
             <Input
               classNames={{
                 inputWrapper:
-                  "bg-default-100 border-0 h-11 rounded-xl focus-within:ring-2 focus-within:ring-primary/30",
+                  "bg-default-100 border-0 h-11 rounded-md focus-within:ring-2 focus-within:ring-primary/30",
               }}
               endContent={
                 <Button
@@ -437,20 +433,27 @@ export const Navbar = () => {
           className={`absolute right-0 top-0 h-full w-[85%] max-w-sm bg-background shadow-2xl transition-transform duration-300 ease-out ${isMenuOpen ? "translate-x-0" : "translate-x-full"}`}
         >
           {/* Drawer Header - Primary branding */}
-          <div className="flex items-center justify-between p-4 border-b border-default-100">
+          <div className="flex items-center justify-between p-5 border-b border-default-100 bg-default-50/50">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <MavaLogo size={22} />
+              <div className="w-11 h-11 rounded-md bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                <MavaLogo size={24} />
               </div>
               <div>
-                <p className="font-bold text-lg text-primary">MAVA</p>
-                <p className="text-[10px] text-default-400">BEAUTY • HOME</p>
+                <p className="font-black text-xl tracking-tight text-primary">
+                  MAVA
+                </p>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-success animate-pulse" />
+                  <p className="text-[10px] text-default-500 font-bold uppercase tracking-wider">
+                    Online Store
+                  </p>
+                </div>
               </div>
             </div>
             <Button
               isIconOnly
-              className="rounded-xl"
-              variant="light"
+              className="rounded-full bg-default-100 hover:bg-default-200 active:scale-90 transition-all"
+              variant="flat"
               onPress={() => setIsMenuOpen(false)}
             >
               <BiX className="text-2xl" />
@@ -462,34 +465,34 @@ export const Navbar = () => {
             {/* User Quick Actions */}
             <div className="grid grid-cols-3 gap-2 mb-6">
               <Link
-                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors"
+                className="flex flex-col items-center gap-2 p-3 rounded-md bg-default-100/50 hover:bg-primary/10 transition-all active:scale-95"
                 href="/account"
               >
                 <BiUser className="text-2xl text-primary" />
-                <span className="text-xs font-medium">Account</span>
+                <span className="text-xs font-bold">Account</span>
               </Link>
               {/* Wishlist - Secondary badge for highlight */}
               <Link
-                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors relative"
+                className="flex flex-col items-center gap-2 p-3 rounded-md bg-default-100/50 hover:bg-primary/10 transition-all relative active:scale-95"
                 href="/wishlist"
               >
                 <BiHeart className="text-2xl text-primary" />
-                <span className="text-xs font-medium">Wishlist</span>
-                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-full flex items-center justify-center">
+                <span className="text-xs font-bold">Wishlist</span>
+                <span className="absolute top-2 right-2 w-4 h-4 bg-secondary text-[#00296b] text-[10px] font-bold rounded-none flex items-center justify-center">
                   3
                 </span>
               </Link>
               <Link
-                className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-default-100 hover:bg-primary/10 transition-colors"
+                className="flex flex-col items-center gap-2 p-3 rounded-md bg-default-100/50 hover:bg-primary/10 transition-all active:scale-95"
                 href="/orders"
               >
                 <BiBox className="text-2xl text-secondary" />
-                <span className="text-xs font-medium">Orders</span>
+                <span className="text-xs font-bold">Orders</span>
               </Link>
             </div>
 
             {/* Promo Card - Primary bg with white text */}
-            <div className="bg-primary p-4 rounded-2xl mb-6 text-primary-foreground">
+            <div className="bg-primary p-4 rounded-md mb-6 text-primary-foreground">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium opacity-90">
@@ -515,7 +518,7 @@ export const Navbar = () => {
                 {categories.map((cat) => (
                   <Link
                     key={cat.id}
-                    className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-default-50 hover:bg-primary/10 border border-default-100 hover:border-primary/30 transition-all active:scale-95"
+                    className="flex flex-col items-center gap-1.5 p-3 rounded-md bg-default-50 hover:bg-primary/10 border border-default-100 hover:border-primary/30 transition-all active:scale-95"
                     href={`/category/${cat.id}`}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -533,15 +536,18 @@ export const Navbar = () => {
               <p className="text-xs font-semibold text-default-400 uppercase tracking-wider mb-3 px-1">
                 Quick Links
               </p>
-              {siteConfig.navMenuItems.map((item) => (
+              {siteConfig.navMenuItems.map((item, idx) => (
                 <Link
                   key={item.href}
-                  className="flex items-center justify-between px-4 py-3.5 rounded-xl hover:bg-primary/10 transition-all active:scale-[0.98]"
+                  className="flex items-center justify-between px-4 py-3.5 rounded-md hover:bg-primary/5 hover:translate-x-1 transition-all active:scale-[0.98]"
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
+                  style={{ transitionDelay: `${idx * 50}ms` }}
                 >
-                  <span className="font-medium">{item.label}</span>
-                  <BiChevronRight className="text-default-400" />
+                  <span className="font-bold text-sm tracking-tight">
+                    {item.label}
+                  </span>
+                  <BiChevronRight className="text-default-400 group-hover:text-primary transition-colors" />
                 </Link>
               ))}
             </div>
@@ -552,7 +558,7 @@ export const Navbar = () => {
             <div className="flex gap-2">
               <Button
                 as={Link}
-                className="flex-1 h-11 rounded-xl font-medium bg-default-100 hover:bg-default-200"
+                className="flex-1 h-11 rounded-md font-medium bg-default-100 hover:bg-default-200"
                 href="/login"
                 startContent={<BiLogIn />}
                 variant="flat"
@@ -563,7 +569,7 @@ export const Navbar = () => {
               {/* Sign Up - Primary CTA */}
               <Button
                 as={Link}
-                className="flex-1 h-11 rounded-xl font-medium"
+                className="flex-1 h-11 rounded-md font-medium"
                 color="primary"
                 href="/signup"
                 startContent={<BiUserPlus />}
